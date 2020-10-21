@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace Interaktiva20_4.Models.DTO
 {
-    public class MovieDTO
+    public class OmdbDTO
     {
-       
+        public List<OmdbDTO> Search { get; set; }
+        public string Title { get; set; }
     }
 }

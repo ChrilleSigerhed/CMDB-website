@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Interaktiva20_4.Data
 {
-    public interface ICmdbRepository
+    public interface IOmdbRepository
     {
-        Task<MovieDTO> GetMovies();
-       
+        Task<OmdbDTO> SearchForMoviesOnOmdbApi();
     }
 }

@@ -19,6 +19,7 @@ namespace Interaktiva20_4
         {
             services.AddControllersWithViews();
             services.AddScoped<ICmdbRepository, CmdbRepository>();
+            services.AddScoped<IOmdbRepository, OmdbRepository>();
             //TODO: services.AddScoped<ICovidRepository, CovidMockRepository>();
         }
 
