@@ -19,9 +19,10 @@ namespace Interaktiva20_4.Controllers
             this.cmdbRepository = cmdbRepository;
         }
         [Route("")]
-        public IActionResult Index()
+        public async Task<IActionResult>Index()
         {
-            return View();
+            var model = await cmdbRepository.GetMovies();
+            return View(model);
         }
 
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

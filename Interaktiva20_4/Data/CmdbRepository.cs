@@ -23,7 +23,7 @@ namespace Interaktiva20_4.Data
             //TODO: Fixa så att koden inte upprepas
             using (HttpClient client = new HttpClient())
             {
-                string endpoint = $"{baseUrl}countries";
+                string endpoint = $"{baseUrl}/movie";
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
                 response.EnsureSuccessStatusCode();
                 var data = await response.Content.ReadAsStringAsync();

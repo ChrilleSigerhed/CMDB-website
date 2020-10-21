@@ -7,5 +7,8 @@ namespace Interaktiva20_4.Models.DTO
 {
     public class MovieDTO
     {
+        public string imdbId { get; set; }
+        public int numberOfLikes { get; set; }
+        public int numberOfDislikes { get; set; }
     }
 }
