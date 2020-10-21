@@ -12,17 +12,20 @@ namespace Interaktiva20_4.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ICmdbRepository cmdbRepository;
+        private ICmdbRepository cmdbRepository;
+        private IOmdbRepository omdbRepository;
 
-        public HomeController(ICmdbRepository cmdbRepository)
+        public HomeController(ICmdbRepository cmdbRepository, IOmdbRepository omdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
+            this.omdbRepository = omdbRepository;
         }
         [Route("")]
-        public async Task<IActionResult>Index()
+        public async Task<IActionResult> Index()
         {
+            var omdbbModel = await omdbRepository.SearchForMoviesOnOmdbApi();
             var model = await cmdbRepository.GetMovies();
-            return View(model);
+            return View(omdbbModel);
         }
 
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
