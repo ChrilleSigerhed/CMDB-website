@@ -23,9 +23,9 @@ namespace Interaktiva20_4.Controllers
         [Route("")]
         public async Task<IActionResult> Index()
         {
-            var omdbbModel = await omdbRepository.SearchForMoviesOnOmdbApi();
+            //var omdbbModel = await omdbRepository.SearchForMoviesOnOmdbApi();
             var model = await cmdbRepository.GetMovies();
-            return View(omdbbModel);
+            return View(model);
         }
 
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

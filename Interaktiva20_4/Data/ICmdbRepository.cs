@@ -8,7 +8,7 @@ namespace Interaktiva20_4.Data
 {
     public interface ICmdbRepository
     {
-        Task<MovieDTO> GetMovies();
+        Task <IEnumerable<MovieDTO>> GetMovies();
        
     }
 }
