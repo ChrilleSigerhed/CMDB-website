@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Interaktiva20_4.Models;
 using Interaktiva20_4.Data;
+using Interaktiva20_4.Models.ViewModel;
 
 namespace Interaktiva20_4.Controllers
 {
@@ -24,8 +25,8 @@ namespace Interaktiva20_4.Controllers
         public async Task<IActionResult> Index()
         {
             //var omdbbModel = await omdbRepository.SearchForMoviesOnOmdbApi();
-            var model = await cmdbRepository.GetMovies();
-            return View(model);
+            var viewModel = await cmdbRepository.PresentIndex();
+            return View(viewModel);
         }
 
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

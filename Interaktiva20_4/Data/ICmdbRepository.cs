@@ -1,4 +1,5 @@
 ﻿using Interaktiva20_4.Models.DTO;
+using Interaktiva20_4.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,12 @@ namespace Interaktiva20_4.Data
 {
     public interface ICmdbRepository
     {
-        Task <IEnumerable<MovieDTO>> GetMovies();
-       
+        Task<IEnumerable<MovieDTO>> GetMoviesCmdb();
+
+        Task<IEnumerable<MovieInfoDTO>> GetMatchingMovies(IEnumerable<MovieDTO> c);
+
+        Task<HomeViewModel> PresentIndex();
+
+
     }
 }
