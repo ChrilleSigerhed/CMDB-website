@@ -17,7 +17,13 @@ namespace Interaktiva20_4.Models.ViewModel
                 {
                     imdbId = x.imdbId,
                     numberOfDislikes = x.numberOfDislikes,
-                    numberOfLikes = x.numberOfLikes
+                    numberOfLikes = x.numberOfLikes,
+                    img = matching
+                    .Select(x => x.Poster).ToString(),
+                    Title = matching
+                    .Select(x => x.Title).ToString(),
+                    plot = matching
+                    .Select(x => x.Poster).ToString()
                 })
                 .OrderBy(x => x.numberOfDislikes - x.numberOfLikes)
                 .ToList();
