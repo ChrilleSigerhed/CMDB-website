@@ -1,18 +1,16 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace Interaktiva20_4.Data.Infrastructure
+namespace Interaktiva20_4.Infrastructure
 {
-    public class ApiClient
+    public class ApiClient : IApiClient
     {
-        public async Task<T> GetTAsync<T>(string endpoint)
+        public async Task<T> GetAsync<T>(string endpoint)
         {
-            //TODO: Fixa så att koden inte upprepas
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
@@ -22,7 +20,6 @@ namespace Interaktiva20_4.Data.Infrastructure
                 return result;
             }
         }
-        // Await task1, task2; 
     }
     
 }

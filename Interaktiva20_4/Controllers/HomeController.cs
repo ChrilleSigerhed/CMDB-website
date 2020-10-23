@@ -14,12 +14,10 @@ namespace Interaktiva20_4.Controllers
     public class HomeController : Controller
     {
         private ICmdbRepository cmdbRepository;
-        private IOmdbRepository omdbRepository;
 
-        public HomeController(ICmdbRepository cmdbRepository, IOmdbRepository omdbRepository)
+        public HomeController(ICmdbRepository cmdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
-            this.omdbRepository = omdbRepository;
         }
         [Route("")]
         public async Task<IActionResult> Index()

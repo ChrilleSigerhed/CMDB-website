@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Interaktiva20_4.Data;
+using Interaktiva20_4.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -19,7 +20,7 @@ namespace Interaktiva20_4
         {
             services.AddControllersWithViews();
             services.AddScoped<ICmdbRepository, CmdbRepository>();
-            services.AddScoped<IOmdbRepository, OmdbRepository>();
+            services.AddScoped<IApiClient, ApiClient>();
             //TODO: services.AddScoped<ICovidRepository, CovidMockRepository>();
         }
 
