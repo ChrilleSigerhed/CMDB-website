@@ -11,7 +11,7 @@ namespace Interaktiva20_4.Models
         public int numberOfLikes { get; set; }
         public int numberOfDislikes { get; set; }
         public string img { get; set; }
-        public string Title { get; set; }
+        public string title { get; set; }
         public string plot { get; set; }
     }
 }

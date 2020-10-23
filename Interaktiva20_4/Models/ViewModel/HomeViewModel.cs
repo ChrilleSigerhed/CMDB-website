@@ -9,25 +9,33 @@ namespace Interaktiva20_4.Models.ViewModel
 {
     public class HomeViewModel
     {
-        public List<Movie> movies { get; set; }
+        public List<Movie> filmer { get; set; }
         public HomeViewModel(IEnumerable<MovieDTO> movies, IEnumerable<MovieInfoDTO> matching)
         {
-            this.movies = movies
+
+            filmer = movies
                 .Select(x => new Movie
                 {
                     imdbId = x.imdbId,
                     numberOfDislikes = x.numberOfDislikes,
-                    numberOfLikes = x.numberOfLikes,
-                    img = matching
-                    .Select(x => x.Poster).ToString(),
-                    Title = matching
-                    .Select(x => x.Title).ToString(),
-                    plot = matching
-                    .Select(x => x.Poster).ToString()
+                    numberOfLikes = x.numberOfLikes
                 })
                 .OrderBy(x => x.numberOfDislikes - x.numberOfLikes)
                 .ToList();
-                
+
+            for (int i = 0; i < filmer.Count; i++)
+            {
+                for (int j = 0; j < filmer.Count; j++)
+                { 
+                    if (filmer[i].imdbId == matching.ElementAt(j).imdbID)
+                    {
+                        filmer[i].title = matching.ElementAt(j).Title;
+                        filmer[i].plot = matching.ElementAt(j).Plot;
+                        filmer[i].img = matching.ElementAt(j).Poster;
+                    }
+                }
+            }
+
         }
     }
 }
