@@ -10,9 +10,10 @@ namespace Interaktiva20_4.Models.ViewModel
     public class HomeViewModel
     {
         public List<Movie> MovieList { get; set; }
+        public string  Title { get; set; }
+        public string ImdbId { get; set; }
         public HomeViewModel(IEnumerable<MovieDTO> movies, IEnumerable<MovieInfoDTO> matching)
         {
-
             MovieList = movies
                 .Select(x => new Movie
                 {
@@ -36,6 +37,22 @@ namespace Interaktiva20_4.Models.ViewModel
                 }
             }
 
+        }
+        public IEnumerable<SelectListItem> Movies
+        {
+            get
+            {
+                if (MovieList != null)
+                {
+                    return MovieList.Select(x =>
+                    new SelectListItem()
+                    {
+                        Text = x.title,
+                        Value = x.imdbId
+                    });
+                }
+                return null;
+            }
         }
     }
 }
