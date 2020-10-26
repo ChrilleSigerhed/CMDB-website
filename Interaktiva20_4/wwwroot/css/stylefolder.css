@@ -1,0 +1,12 @@
+﻿.suggestion > div {
+    padding: 10px;
+    font-size: 1rem;
+    color: black;
+    border-bottom: 1px solid #EAE4E3;
+    border-left: 1px solid #EAE4E3;
+    text-align: left;
+}
+
+    .suggestion > div:hover {
+        background-color: #EAE4E3;
+    }
