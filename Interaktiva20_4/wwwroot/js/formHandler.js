@@ -14,7 +14,7 @@ function myFunction() {
 
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0]
-        txtValue = a.textContent || a.innerText
+        txtValue = a.textContent
         if (txtValue.toUpperCase().indexOf(filter) > -1 && counter < 5)
         {
             counter++

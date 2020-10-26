@@ -53,12 +53,12 @@
 
                     <!--<div class="d-inline-block text-center"><img src="images/country.png" alt="img" class="fh5co_country_width"/></div>-->
                     <div class="md-form active-pink active-pink-2 mb-3 mt-0">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for a movie...">
 
                             <ul id="myUL">
                                 @for (int i = 0; i < Model.Movies.Count(); i++)
                                 {
-                                    <li><a href="#">@Model.Movies.ElementAt(i).Text</a></li>
+                                    <li><a href="/about/search?selectedMovie=@Model.Movies.ElementAt(i).Value">@Model.Movies.ElementAt(i).Text</a></li>
                                 }
                             </ul>
                        
