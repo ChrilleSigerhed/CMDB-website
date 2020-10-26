@@ -18,28 +18,15 @@ namespace Interaktiva20_4.Data
         private string baseUrlCmdb;
         private string baseUrlOmdb;
         IApiClient apiClient;
-
         public CmdbRepository(IConfiguration configuration, IApiClient apiClient)
         {
             baseUrlCmdb = configuration.GetValue<string>("CmdbApi:BaseUrl");
             baseUrlOmdb = configuration.GetValue<string>("OmdbApi:BaseUrl");
             this.apiClient = apiClient;
-
         }
         public async Task<IEnumerable<MovieDTO>> GetMoviesCmdb()
         {
             return await apiClient.GetAsync<IEnumerable<MovieDTO>>(baseUrlCmdb + "/movie");
-
-            //TODO: Fixa så att koden inte upprepas
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    string endpoint = $"{baseUrlCmdb}/movie";
-            //    var response = await client.GetAsync($"{baseUrlCmdb}/movie", HttpCompletionOption.ResponseHeadersRead);
-            //    response.EnsureSuccessStatusCode();
-            //    var data = await response.Content.ReadAsStringAsync();
-            //    var resultCmdb = JsonConvert.DeserializeObject<IEnumerable<MovieDTO>>(data);
-            //    return resultCmdb;
-            //}
         }
         public async Task<IEnumerable<MovieInfoDTO>> GetMatchingMovies(IEnumerable<MovieDTO> resultCmdb)
         {
@@ -50,21 +37,6 @@ namespace Interaktiva20_4.Data
                 movieInfoList.Add(await apiClient.GetAsync<MovieInfoDTO>(baseUrlOmdb + APIString));
             }
             return movieInfoList;
-            //TODO: Fixa så att koden inte upprepas
-            //using (HttpClient client = new HttpClient())
-            //{
-            //    for (int i = 0; i < resultCmdb.Count(); i++)
-            //    {
-            //        var APIString = "?apikey=547db346&i=" + resultCmdb.ElementAt(i).imdbId;
-            //        var endpoint = $"{baseUrlOmdb}/{APIString}";
-            //        var response = await client.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
-            //        response.EnsureSuccessStatusCode();
-            //        var data = await response.Content.ReadAsStringAsync();
-            //        var resultOmdb = JsonConvert.DeserializeObject<MovieInfoDTO>(data);
-            //        movieInfoList.Add(resultOmdb);
-            //    }
-            //    return movieInfoList;
-            //}
         }
         public async Task<HomeViewModel> PresentIndex()
         {
