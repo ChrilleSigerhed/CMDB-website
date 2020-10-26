@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Interaktiva20_4.Models;
 using Interaktiva20_4.Data;
 using Interaktiva20_4.Models.ViewModel;
+using System.Text.Encodings.Web;
 
 namespace Interaktiva20_4.Controllers
 {
@@ -22,15 +23,15 @@ namespace Interaktiva20_4.Controllers
         [Route("")]
         public async Task<IActionResult> Index()
         {
-            //var omdbbModel = await omdbRepository.SearchForMoviesOnOmdbApi();
             var viewModel = await cmdbRepository.PresentIndex();
+            ViewData["movies"] = viewModel;
             return View(viewModel);
         }
 
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
