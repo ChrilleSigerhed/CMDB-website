@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
-@model Interaktiva20_4.Models.ViewModel.HomeViewModel
-<input type="hidden" id="movieID" name="movieID" value="@Model.MovieList">
+@model HomeViewModel
 <!--
 
     24 News by FreeHTML5.co
@@ -55,10 +54,16 @@
 
                     <!--<div class="d-inline-block text-center"><img src="images/country.png" alt="img" class="fh5co_country_width"/></div>-->
                     <div class="md-form active-pink active-pink-2 mb-3 mt-0">
-                        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-                        <div class="suggestion">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search">
 
-                        </div>
+                            <ul id="myUL">
+                                @for (int i = 0; i < Model.Movies.Count(); i++)
+                                {
+                                    <li><a href="#">@Model.Movies.ElementAt(i).Text</a></li>
+                                }
+                            </ul>
+                       
+
                     </div>
                     <div class="clearfix"></div>
 
