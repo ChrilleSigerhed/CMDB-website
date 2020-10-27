@@ -59,13 +59,13 @@
                     <div class="md-form active-pink active-pink-2 mb-3 mt-0">
                         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for a movie...">
 
-                            <ul id="myUL">
-                                @for (int i = 0; i < Model.Movies.Count(); i++)
-                                {
-                                    <li><a href="/about/search?selectedMovie=@Model.Movies.ElementAt(i).Value">@Model.Movies.ElementAt(i).Text</a></li>
-                                }
-                            </ul>
-                       
+                        <ul id="myUL">
+                            @for (int i = 0; i < Model.Movies.Count(); i++)
+                            {
+                                <li><a href="/about/search?selectedMovie=@Model.Movies.ElementAt(i).Value">@Model.Movies.ElementAt(i).Text</a></li>
+                            }
+                        </ul>
+
 
                     </div>
                     <div class="clearfix"></div>
@@ -73,7 +73,7 @@
             </div>
         </div>
     </div>
-   
+
     @RenderBody();
 
     <div class="container-fluid fh5co_footer_bg pb-3">

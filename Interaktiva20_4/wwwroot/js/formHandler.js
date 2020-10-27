@@ -1,4 +1,5 @@
 ﻿
+
 function onChange(val) {
     window.location="/about/search?selectedMovie=" +val
 }
@@ -34,4 +35,9 @@ function myFunction() {
         document.getElementById('myUL').style.display = 'block'
     }
 }
-
+    let likeButton = document.getElementById("likeButton");
+    likeButton.addEventListener("click", function () {
+    let value = document.querySelector("#Rank1Movie").textContent
+    value++
+    document.querySelector("#Rank1Movie").textContent = value
+    });

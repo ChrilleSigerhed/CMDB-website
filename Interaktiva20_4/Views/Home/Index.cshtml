@@ -14,7 +14,7 @@
                         </div>
                         <div class=""><a href="single.html" class="fh5co_good_font"> @Model.MovieList[0].title </a></div>
                         <form asp-action="Search" asp-controller="About" method="get">
-                            <a class="icon-thumbs-up" href="#"></a>@Model.MovieList[0].numberOfLikes <a class="icon-thumbs-down" href="#"></a>@Model.MovieList[0].numberOfDislikes
+                            <a class="icon-thumbs-up" id="likeButton" ></a> <span id="Rank1Movie">@Model.MovieList[0].numberOfLikes</span> <a class="icon-thumbs-down"></a> <span>@Model.MovieList[0].numberOfDislikes</span>
 
                             <p>@Html.DropDownListFor(x => Model.Movies, new SelectList(Model.Movies, "Value", "Text"), "Sök film...", new { @onchange = "onChange(this.value)" })</p>
                             <br />

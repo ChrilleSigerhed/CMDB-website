@@ -1307,12 +1307,15 @@
 }
 .icon-thumbs-down:before {
   content: "\ea29";
+  color: yellow;
 }
 .icon-thumbs-up:before {
   content: "\ea2a";
+  color: yellow;
 }
+
 .icon-thunder-cloud:before {
-  content: "\ea2b";
+    content: "\ea2b";
 }
 .icon-ticket:before {
   content: "\ea2c";
