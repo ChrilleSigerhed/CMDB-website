@@ -24,7 +24,6 @@ namespace Interaktiva20_4.Controllers
         public async Task<IActionResult> Index()
         {
             var viewModel = await cmdbRepository.PresentIndex();
-            ViewData["movies"] = viewModel;
             return View(viewModel);
         }
 

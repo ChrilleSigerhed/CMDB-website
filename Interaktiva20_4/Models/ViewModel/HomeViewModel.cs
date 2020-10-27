@@ -27,7 +27,7 @@ namespace Interaktiva20_4.Models.ViewModel
             for (int i = 0; i < MovieList.Count; i++)
             {
                 for (int j = 0; j < MovieList.Count; j++)
-                { 
+                {
                     if (MovieList[i].imdbId == matching.ElementAt(j).imdbID)
                     {
                         MovieList[i].title = matching.ElementAt(j).Title;
@@ -36,8 +36,8 @@ namespace Interaktiva20_4.Models.ViewModel
                     }
                 }
             }
-
         }
+
         public IEnumerable<SelectListItem> Movies
         {
             get

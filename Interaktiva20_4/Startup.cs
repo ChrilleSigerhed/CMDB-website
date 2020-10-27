@@ -20,9 +20,9 @@ namespace Interaktiva20_4
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-           // services.AddScoped<ICmdbRepository, CmdbRepository>();
-           // services.AddScoped<IApiClient, ApiClient>();
-            services.AddScoped<ICmdbRepository, CmdbMockRepository>();
+            services.AddScoped<ICmdbRepository, CmdbRepository>();
+            services.AddScoped<IApiClient, ApiClient>();
+            //services.AddScoped<ICmdbRepository, CmdbMockRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

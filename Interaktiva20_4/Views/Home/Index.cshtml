@@ -13,18 +13,6 @@
                             </a>
                         </div>
                         <div class=""><a href="single.html" class="fh5co_good_font"> @Model.MovieList[0].title </a></div>
-                        <form asp-action="Search" asp-controller="About" method="get">
-                            <a class="icon-thumbs-up" id="likeButton" ></a> <span id="Rank1Movie">@Model.MovieList[0].numberOfLikes</span> <a class="icon-thumbs-down"></a> <span>@Model.MovieList[0].numberOfDislikes</span>
-
-                            <p>@Html.DropDownListFor(x => Model.Movies, new SelectList(Model.Movies, "Value", "Text"), "Sök film...", new { @onchange = "onChange(this.value)" })</p>
-                            <br />
-                            <p>@Html.DisplayNameFor(model => model.Title)</p>
-                            <p><input asp-for="Title" type="text" /></p>
-                            @*<p> @Html.TextBoxFor(x => x.TotalConfirmed)</p>*@
-                            <p>@Html.DisplayNameFor(model => model.ImdbId)</p>
-                            <p>@Html.DisplayFor(model => model.ImdbId)</p>
-                            <button type="submit">OK</button>
-                        </form>
                     </div>
                 </div>
             </div>
