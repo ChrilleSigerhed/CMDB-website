@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 @model HomeViewModel
+
 <!--
 
     24 News by FreeHTML5.co
@@ -28,7 +29,7 @@
     <script src="js/modernizr-3.5.0.min.js"></script>
 </head>
 <body>
-    <div class="container-fluid fh5co_header_bg">
+    <div class="container-fluid fh5co_header_bg" id="header_body_fixed">
         <div class="container">
             <div class="row">
                 <div class="col-12 fh5co_mediya_center">
@@ -40,35 +41,26 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" id="header_body_fixed">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-3 fh5co_padding_menu">
                     <img src="/images/logo.png" alt="" class="w-100 h-75" />
                 </div>
-                <div class="col-12 col-md-9 align-self-center fh5co_mediya_right">
-                    <div class="text-center d-inline-block">
-
-                        <a class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-search"></i></div></a>
-                    </div>
-
-                    <!--<div class="d-inline-block text-center"><img src="images/country.png" alt="img" class="fh5co_country_width"/></div>-->
-                    <div class="md-form active-pink active-pink-2 mb-3 mt-0">
+                <div class="col-12 col-md-9 align-self-center fh5co_mediya_right" id="noPaddingID">
+                    <div class="md-form active-pink active-pink-2 mt-0">
                         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for a movie...">
-
-                            <ul id="myUL">
-                                @for (int i = 0; i < Model.Movies.Count(); i++)
-                                {
-                                    <li><a href="/about/search?selectedMovie=@Model.Movies.ElementAt(i).Value">@Model.Movies.ElementAt(i).Text</a></li>
-                                }
-                            </ul>
-                       
-
                     </div>
-                    <div class="clearfix"></div>
-
-
+                    <div class="clearfix" id="fixed">
+                        <ul id="myUL">
+                            @for (int i = 0; i < Model.Movies.Count(); i++)
+                            {
+                                <li><a href="/about/search?selectedMovie=@Model.Movies.ElementAt(i).Value">@Model.Movies.ElementAt(i).Text</a></li>
+                            }
+                        </ul>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>

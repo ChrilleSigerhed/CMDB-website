@@ -1,9 +1,9 @@
 ﻿
+document.getElementById('myUL').style.display = "none"
 function onChange(val) {
     window.location="/about/search?selectedMovie=" +val
 }
 
-document.getElementById('myUL').style.display = 'none'
 function myFunction() {
 
     var input, filter, ul, li, a, i, txtValue
