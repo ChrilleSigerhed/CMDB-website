@@ -27,6 +27,7 @@ namespace Interaktiva20_4.Test
             return FileHandler.GetTestData<IEnumerable<MovieInfoDTO>>($"{baseUrl}OmdbMock.json");
         }
 
+
         public async Task<IEnumerable<MovieDTO>> GetMoviesCmdb()
         {
             await Task.Delay(0);
@@ -44,6 +45,15 @@ namespace Interaktiva20_4.Test
             await Task.WhenAll(tasks);
 
             return new HomeViewModel(resultCmdb, resultOmdb.Result);
+        }
+
+        public Task<SearchViewModel> PresentMoviesBySearch(string search)
+        {
+            throw new NotImplementedException();
+        }
+        public Task<IEnumerable<MovieInfoDTO>> GetMoviesBySearch(string search)
+        {
+            throw new NotImplementedException();
         }
     }
 }

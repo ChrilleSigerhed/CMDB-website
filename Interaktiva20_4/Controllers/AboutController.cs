@@ -16,10 +16,10 @@ namespace Interaktiva20_4.Controllers
             this.cmdbRepository = cmdbRepository;
         }
         [Route("/about")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
             //var omdbbModel = await omdbRepository.SearchForMoviesOnOmdbApi();
-            var viewModel = await cmdbRepository.PresentIndex();
+            var viewModel = await cmdbRepository.PresentMoviesBySearch(search);
             return View(viewModel);
         }
     }
