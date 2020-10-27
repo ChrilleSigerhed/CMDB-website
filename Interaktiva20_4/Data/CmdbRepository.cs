@@ -41,11 +41,13 @@ namespace Interaktiva20_4.Data
                 var APIString = "/?apikey=547db346&i=" + resultCmdb.ElementAt(i).imdbId;
                 var task = apiClient.GetAsync<MovieInfoDTO>(baseUrlOmdb + APIString);
                 tasks.Add(task);
-                //movieInfoList.Add(await apiClient.GetAsync<MovieInfoDTO>(baseUrlOmdb + APIString));
             }
             
             await Task.WhenAll(tasks);
-
+            for (int i = 0; i < tasks.Count; i++)
+            {
+                movieInfoList.Add(tasks[i].Result);
+            }
             return movieInfoList;
         }
 
