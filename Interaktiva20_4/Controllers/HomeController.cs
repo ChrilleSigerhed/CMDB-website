@@ -9,6 +9,7 @@ using Interaktiva20_4.Models;
 using Interaktiva20_4.Data;
 using Interaktiva20_4.Models.ViewModel;
 using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Cors;
 
 namespace Interaktiva20_4.Controllers
 {

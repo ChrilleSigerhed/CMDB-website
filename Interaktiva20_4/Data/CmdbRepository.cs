@@ -38,7 +38,7 @@ namespace Interaktiva20_4.Data
             List<MovieInfoDTO> movieInfoList = new List<MovieInfoDTO>();
             for (int i = 0; i < resultCmdb.Count(); i++)
             {
-                var APIString = "/?apikey=547db346&i=" + resultCmdb.ElementAt(i).imdbId;
+                var APIString = "/?apikey=4c824471&i=" + resultCmdb.ElementAt(i).imdbId;
                 var task = apiClient.GetAsync<MovieInfoDTO>(baseUrlOmdb + APIString);
                 tasks.Add(task);
             }
@@ -79,7 +79,7 @@ namespace Interaktiva20_4.Data
 
         public async Task<IEnumerable<MovieInfoDTO>> GetMoviesBySearch(string search)
         {
-            var APIString = "/?apikey=547db346&s=" + search;
+            var APIString = "/?apikey=4c824471&s=" + search;
             return await apiClient.GetAsync<IEnumerable<MovieInfoDTO>>(baseUrlOmdb + APIString); 
         }
     }

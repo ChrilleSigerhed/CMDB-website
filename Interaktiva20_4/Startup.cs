@@ -8,6 +8,7 @@ using Interaktiva20_4.Test;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +20,7 @@ namespace Interaktiva20_4
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllersWithViews();
             services.AddScoped<ICmdbRepository, CmdbRepository>();
             services.AddScoped<IApiClient, ApiClient>();
@@ -38,14 +40,20 @@ namespace Interaktiva20_4
             //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             //    app.UseHsts();
             //}
-            //app.UseHttpsRedirection();
             //app.UseStaticFiles();
 
             //app.UseRouting();
 
             //app.UseAuthorization();
+
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+
+            app.UseCors(builder =>
+                builder.WithOrigins("https://localhost:44359")
+                .AllowAnyHeader()
+                 );
 
             app.UseEndpoints(endpoints =>
             {

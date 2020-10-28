@@ -6,13 +6,13 @@
                 <div class="fh5co_suceefh5co_height">
                     <img src=@Model.MovieList[0].img alt="img" />
                     <div class="fh5co_suceefh5co_height_position_absolute"></div>
-                    <div class="fh5co_suceefh5co_height_position_absolute_font">
-                        <div class="">
-                            <a href="#" class="color_fff">
-                                <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Top rated movie right now!
-                            </a>
-                        </div>
-                        <div class=""><a href="single.html" class="fh5co_good_font"> @Model.MovieList[0].title </a></div>
+                    <div class="TopMovieInfo">
+                        <h1 class="TopRatedh1">Top Rated Movie Right Now!</h1>
+                        <h2 class="TopRatedh2">@Model.MovieList[0].title</h2>
+                        <p>@Model.MovieList[0].plot</p>
+                        <a >CMDb Betyg: </a>
+                        <a style="font-size:35px;"  class="icon-thumbs-up">@Model.MovieList[0].numberOfLikes</a>
+                        <a style="font-size:35px;" class="icon-thumbs-down" id="">@Model.MovieList[0].numberOfDislikes</a>
                     </div>
                 </div>
             </div>
