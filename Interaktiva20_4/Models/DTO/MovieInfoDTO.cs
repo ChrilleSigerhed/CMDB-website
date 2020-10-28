@@ -8,8 +8,8 @@ namespace Interaktiva20_4.Models.DTO
     public class MovieInfoDTO
     {
         public string Title { get; set; }
-        public string Plot { get; set; }
         public string Poster { get; set; }
         public string imdbID { get; set; }
+        public string Plot { get; set; }
     }
 }

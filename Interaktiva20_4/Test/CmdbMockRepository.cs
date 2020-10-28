@@ -47,11 +47,11 @@ namespace Interaktiva20_4.Test
             return new HomeViewModel(resultCmdb, resultOmdb.Result);
         }
 
-        public Task<SearchViewModel> PresentMoviesBySearch(string search)
+        public Task<HomeViewModel> PresentIndex(string search)
         {
             throw new NotImplementedException();
         }
-        public Task<IEnumerable<MovieInfoDTO>> GetMoviesBySearch(string search)
+        public Task<SearchDTO> GetMoviesBySearch(string search)
         {
             throw new NotImplementedException();
         }

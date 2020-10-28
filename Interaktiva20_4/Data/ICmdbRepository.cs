@@ -15,9 +15,9 @@ namespace Interaktiva20_4.Data
 
         Task<HomeViewModel> PresentIndex();
         
-        Task<SearchViewModel> PresentMoviesBySearch(string search);
+        Task<HomeViewModel> PresentIndex(string search);
 
-        Task<IEnumerable<MovieInfoDTO>> GetMoviesBySearch(string search);
+        Task<SearchDTO> GetMoviesBySearch(string search);
 
 
 

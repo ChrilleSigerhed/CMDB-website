@@ -19,9 +19,17 @@ namespace Interaktiva20_4
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".MovieListHolder.Session";
+                options.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews();
             services.AddScoped<ICmdbRepository, CmdbRepository>();
             services.AddScoped<IApiClient, ApiClient>();
+            
             //services.AddScoped<ICmdbRepository, CmdbMockRepository>();
         }
 
@@ -41,12 +49,12 @@ namespace Interaktiva20_4
             //app.UseHttpsRedirection();
             //app.UseStaticFiles();
 
-            //app.UseRouting();
+            app.UseRouting();
 
             //app.UseAuthorization();
             app.UseStaticFiles();
             app.UseRouting();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

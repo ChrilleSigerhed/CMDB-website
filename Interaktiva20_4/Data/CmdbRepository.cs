@@ -6,12 +6,12 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Web.Providers.Entities;
 using Interaktiva20_4.Infrastructure;
 using Interaktiva20_4.Models;
 using Interaktiva20_4.Models.DTO;
 using Interaktiva20_4.Models.ViewModel;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 
 namespace Interaktiva20_4.Data
 {
@@ -19,6 +19,7 @@ namespace Interaktiva20_4.Data
     {
         private string baseUrlCmdb;
         private string baseUrlOmdb;
+        private string ApiKey = "4c824471";
         IApiClient apiClient;
         public CmdbRepository(IConfiguration configuration, IApiClient apiClient)
         {
@@ -38,7 +39,7 @@ namespace Interaktiva20_4.Data
             List<MovieInfoDTO> movieInfoList = new List<MovieInfoDTO>();
             for (int i = 0; i < resultCmdb.Count(); i++)
             {
-                var APIString = "/?apikey=547db346&i=" + resultCmdb.ElementAt(i).imdbId;
+                var APIString = $"/?apikey={ApiKey}&i=" + resultCmdb.ElementAt(i).imdbId;
                 var task = apiClient.GetAsync<MovieInfoDTO>(baseUrlOmdb + APIString);
                 tasks.Add(task);
             }
@@ -54,33 +55,34 @@ namespace Interaktiva20_4.Data
         public async Task<HomeViewModel> PresentIndex()
         {
             var tasks = new List<Task>();
-            var resultCmdb = await GetMoviesCmdb();
-            var resultOmdb = GetMatchingMovies(resultCmdb);
-
-            tasks.Add(resultOmdb);
-            //tasks.Add(resultCmdb);
-            await Task.WhenAll(tasks);
-
-            return new HomeViewModel(resultCmdb, resultOmdb.Result);
-        }
-
-        public async Task<SearchViewModel> PresentMoviesBySearch(string search)
-        {
-            var tasks = new List<Task>();
+            
             var resultCmdb = GetMoviesCmdb();
-            var resultOmdb = GetMoviesBySearch(search);
+            var resultOmdb = GetMatchingMovies(resultCmdb.Result);
 
             tasks.Add(resultOmdb);
             tasks.Add(resultCmdb);
             await Task.WhenAll(tasks);
 
-            return new SearchViewModel(resultCmdb.Result, resultOmdb.Result);
+            return new HomeViewModel(resultCmdb.Result, resultOmdb.Result);
         }
 
-        public async Task<IEnumerable<MovieInfoDTO>> GetMoviesBySearch(string search)
+        public async Task<HomeViewModel> PresentIndex(string search)
         {
-            var APIString = "/?apikey=547db346&s=" + search;
-            return await apiClient.GetAsync<IEnumerable<MovieInfoDTO>>(baseUrlOmdb + APIString); 
+            var tasks = new List<Task>();
+            //var resultCmdb =  GetMoviesCmdb();
+            var resultOmdb =  GetMoviesBySearch(search);
+
+            tasks.Add(resultOmdb);
+            //tasks.Add(resultCmdb);
+            await Task.WhenAll(tasks);
+
+            return new HomeViewModel(resultOmdb.Result);
+        }
+
+        public async Task<SearchDTO> GetMoviesBySearch(string search)
+        {
+            var APIString = $"/?apikey={ApiKey}&s=" + search;
+            return await apiClient.GetAsync<SearchDTO>(baseUrlOmdb + APIString); 
         }
     }
 }
