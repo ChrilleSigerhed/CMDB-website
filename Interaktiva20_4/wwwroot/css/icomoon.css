@@ -1307,13 +1307,18 @@
 }
 .icon-thumbs-down:before {
   content: "\ea29";
-  color: yellow;
+  color: darkred;
 }
 .icon-thumbs-up:before {
   content: "\ea2a";
-  color: yellow;
+  color: forestgreen;
 }
-
+.icon-thumbs-down:hover {
+    cursor: pointer
+}
+.icon-thumbs-up:hover {
+    cursor: pointer
+}
 .icon-thunder-cloud:before {
     content: "\ea2b";
 }

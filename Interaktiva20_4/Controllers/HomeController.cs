@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Interaktiva20_4.Models.DTO;
+using Microsoft.AspNetCore.Cors;
 
 namespace Interaktiva20_4.Controllers
 {
