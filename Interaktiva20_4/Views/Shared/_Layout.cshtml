@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 @model HomeViewModel
-
 <!--
 
     24 News by FreeHTML5.co
@@ -56,9 +55,9 @@
                     </div>
                     <div class="clearfix" id="fixed">
                         <ul id="myUL">
-                            @for (int i = 0; i < Model.Movies.Count(); i++)
+                            @for (int i = 0; i < Model.SavedList.Count(); i++)
                             {
-                                <li><a asp-action="Index" asp-controller="about" asp-route-id="@Model.Movies.ElementAt(i).Value">@Model.Movies.ElementAt(i).Text</a></li>
+                                <li><a asp-action="Index" asp-controller="About" asp-route-id="@Model.SavedList.ElementAt(i).title">@Model.SavedList.ElementAt(i).title</a></li>
                             }
                         </ul>
                     </div>
@@ -66,6 +65,7 @@
             </div>
         </div>
     </div>
+
 
     @RenderBody();
 

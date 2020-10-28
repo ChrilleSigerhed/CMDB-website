@@ -1,28 +1,31 @@
 ﻿using Interaktiva20_4.Models.DTO;
+using Interaktiva20_4.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Interaktiva20_4.Controllers;
 
 namespace Interaktiva20_4.Models.ViewModel
 {
     public class HomeViewModel
     {
+        public List<Movie> SavedList { get; set; }
         public List<Movie> MovieList { get; set; }
         public string  Title { get; set; }
         public string ImdbId { get; set; }
         public HomeViewModel(IEnumerable<MovieDTO> movies, IEnumerable<MovieInfoDTO> matching)
         {
             MovieList = movies
-                .Select(x => new Movie
-                {
-                    imdbId = x.imdbId,
-                    numberOfDislikes = x.numberOfDislikes,
-                    numberOfLikes = x.numberOfLikes
-                })
-                .OrderBy(x => x.numberOfDislikes - x.numberOfLikes)
-                .ToList();
+            .Select(x => new Movie
+            {
+                imdbId = x.imdbId,
+                numberOfDislikes = x.numberOfDislikes,
+                numberOfLikes = x.numberOfLikes
+            })
+            .OrderBy(x => x.numberOfDislikes - x.numberOfLikes)
+            .ToList();
 
             for (int i = 0; i < MovieList.Count; i++)
             {
@@ -36,6 +39,24 @@ namespace Interaktiva20_4.Models.ViewModel
                     }
                 }
             }
+        }
+        public HomeViewModel(List<Movie> savedList)
+        {
+            MovieList = savedList
+                .OrderBy(x => x.numberOfDislikes - x.numberOfLikes)
+                .ToList();
+        }
+        public HomeViewModel(SearchDTO searchResult)
+        {
+
+            MovieList = searchResult
+                .Search.Select(x => new Movie
+                {
+                    imdbId = x.imdbID,
+                    title = x.Title,
+                    img = x.Poster
+                }).ToList();
+            
         }
 
         public IEnumerable<SelectListItem> Movies
