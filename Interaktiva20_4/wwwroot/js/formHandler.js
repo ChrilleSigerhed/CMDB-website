@@ -36,8 +36,9 @@ function myFunction() {
 }
 
  
-let likeButton = document.getElementById("likeButton");
-likeButton.addEventListener("click", function () {
-    let value = document.querySelector("#Rank1Movie").textContent
+const LikeButton = document.querySelector("#body_margin > div > div > div > div.TopMovieInfo > a.icon-thumbs-up")
+LikeButton.addEventListener("click", function () {
+    let value = LikeButton.textContent
     value++
-    document.querySelector("#Rank1Movie").textContent = value});
+    LikeButton.textContent = value
+});
