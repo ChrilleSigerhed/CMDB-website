@@ -74,7 +74,6 @@ function myFunction() {
             }
         }
     }
-
     if (input.value.length == 0 || input.value == " ") {
         document.getElementById('myUL').style.display = 'none'
     }
@@ -84,10 +83,7 @@ function myFunction() {
     }
 }
 
-// Sparar alla röster lokalt
-let SavedList = localStorage.getItem("savedList") 
-let LikedOrDislikedAlready = SavedList.split(",");
-
+let LikedOrDislikedAlready = []
 // Eventlistener för alla "Gilla knappar" som registerar en like
 document.querySelectorAll('.icon-thumbs-up').forEach(item => {
     item.addEventListener('click', async function() {
@@ -100,13 +96,10 @@ document.querySelectorAll('.icon-thumbs-up').forEach(item => {
                 value++
                 item.textContent = value
                 LikedOrDislikedAlready.push(item.accessKey)
-                localStorage.setItem('savedList', item.accessKey)
             }
             else {
                 alert("Ops, något gick fel!")
             }
-
-
         }
         else {
             alert("Du har redan röstat på den filmen!");
@@ -126,13 +119,10 @@ document.querySelectorAll('.icon-thumbs-down').forEach(item => {
                     value++
                     item.textContent = value
                     LikedOrDislikedAlready.push(item.accessKey)
-                    localStorage.setItem('savedList', item.accessKey)
                 }
                 else {
                     alert("Ops, något gick fel!")
                 }
-           
-            
         }
         else {
             alert("Du har redan röstat på den filmen!");
