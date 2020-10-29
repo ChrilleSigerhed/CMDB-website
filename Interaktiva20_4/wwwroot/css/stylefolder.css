@@ -151,3 +151,11 @@
 }
 
 
+.readMoreButton{
+    color: blue !important;
+    padding-left: 5px;
+}
+.readMoreButton:hover{
+    color: dodgerblue !important;
+    cursor: pointer
+}
