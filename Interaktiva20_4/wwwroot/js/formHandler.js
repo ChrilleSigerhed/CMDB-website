@@ -35,6 +35,8 @@ function myFunction() {
         document.getElementById('myUL').style.display = 'block'
     }
 }
+
+// Sparar alla röster lokalt
 let SavedList = localStorage.getItem("savedList") 
 let LikedOrDislikedAlready = SavedList.split(",");
 
