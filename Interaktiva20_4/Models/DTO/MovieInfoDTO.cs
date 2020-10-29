@@ -13,5 +13,6 @@ namespace Interaktiva20_4.Models.DTO
         public string Plot { get; set; }
         public string Actors { get; set; }
         public string Year { get; set; }
+        public List<RatingsDTO> Ratings { get; set; }
     }
 }

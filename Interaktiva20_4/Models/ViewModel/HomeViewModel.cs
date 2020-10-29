@@ -39,6 +39,7 @@ namespace Interaktiva20_4.Models.ViewModel
                         MovieList[i].img = matching.ElementAt(j).Poster;
                         MovieList[i].actor = matching.ElementAt(j).Actors;
                         MovieList[i].year = "(" + matching.ElementAt(j).Year + ")";
+                        MovieList[i].ratings = matching.ElementAt(j).Ratings;
                     }
                 }
             }
@@ -61,6 +62,7 @@ namespace Interaktiva20_4.Models.ViewModel
                     actor = x.Actors,
                     plot = x.Plot,
                     year = x.Year,
+                    ratings = x.Ratings
                 }).ToList();
             for (int i = 0; i < MovieList.Count; i++)
             {

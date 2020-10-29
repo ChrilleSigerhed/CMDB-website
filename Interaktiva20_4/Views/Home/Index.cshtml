@@ -10,9 +10,23 @@
                         <h1 class="TopRatedh1">Top Rated Movie Right Now!</h1>
                         <h2 class="TopRatedh2">@Model.SavedList[0].title</h2>
                         <p>@Model.SavedList[0].plot</p>
-                        <a >CMDb Betyg: </a>
-                        <a style="font-size:35px;"  class="icon-thumbs-up"  accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfLikes</a>
+                        <a>CMDb Betyg: </a>
+                        <a style="font-size:35px;" class="icon-thumbs-up" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfLikes</a>
                         <a style="font-size:35px;" class="icon-thumbs-down" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfDislikes</a>
+                        <br />
+                        @for (int i = 0; i < Model.SavedList[0].ratings.Count; i++)
+                        {
+                            <br />
+                            @if (@Model.SavedList[0].ratings[i].Source == "Internet Movie Database")
+                            {<img src="~/images/imdb.png" />}
+                            @if (@Model.SavedList[0].ratings[i].Source == "Rotten Tomatoes")
+                            {<img src="~/images/rottentomatoes.png" />}
+                            @if (@Model.SavedList[0].ratings[i].Source == "Metacritic")
+                            {<img src="~/images/metacritic.png" />}
+                            <a>@Model.SavedList[0].ratings[i].Source:</a>
+                            <a style="font-size:20px;">@Model.SavedList[0].ratings[i].Value</a>
+                            <br />
+                        }
                     </div>
                 </div>
             </div>
