@@ -1,4 +1,5 @@
 ﻿
+
 document.getElementById('myUL').style.display = "none"
 function onChange(val) {
     window.location="/about/search?selectedMovie=" +val
@@ -35,10 +36,64 @@ function myFunction() {
     }
 }
 
- 
-const LikeButton = document.querySelector("#body_margin > div > div > div > div.TopMovieInfo > a.icon-thumbs-up")
-LikeButton.addEventListener("click", function () {
-    let value = LikeButton.textContent
-    value++
-    LikeButton.textContent = value
-});
+let movies = null;
+var request = new XMLHttpRequest()
+request.open('GET', 'https://localhost:44313/api/movie', true)
+request.onload = function () {
+    var data = JSON.parse(this.response)
+    movies = data
+    data.forEach((movie) => {
+        console.log(movie.imdbID)
+    })
+}
+request.send()
+
+let LikedOrDislikedAlready = []
+document.querySelectorAll('.icon-thumbs-up').forEach(item => {
+    item.addEventListener('click', event => {
+
+        if (LikedOrDislikedAlready.includes(item.accessKey) == false) {
+            var request = new XMLHttpRequest()
+            request.open('GET', 'https://localhost:44313/api/' + item.accessKey + '/like', true)
+            request.onload = function () {
+                if (request.status == 200) {
+                    let value = item.textContent
+                    value++
+                    item.textContent = value
+                }
+                else {
+                    alert("Ops, något gick fel!")
+                }
+            }
+            LikedOrDislikedAlready.push(item.accessKey)
+            request.send()
+        }
+        else {
+            alert("Du har redan röstat på den filmen!");
+        }
+    })
+})
+document.querySelectorAll('.icon-thumbs-down').forEach(item => {
+    item.addEventListener('click', event => {
+
+        if (LikedOrDislikedAlready.includes(item.accessKey) == false) {
+            var request = new XMLHttpRequest()
+            request.open('GET', 'https://localhost:44313/api/' + item.accessKey + '/dislike', true)
+            request.onload = function () {
+                if (request.status == 200) {
+                    let value = item.textContent
+                    value++
+                    item.textContent = value
+                }
+                else {
+                    alert("Ops, något gick fel!")
+                }
+            }
+            LikedOrDislikedAlready.push(item.accessKey)
+            request.send()
+        }
+        else {
+            alert("Du har redan röstat på den filmen!");
+        }
+    })
+})
