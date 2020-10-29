@@ -35,10 +35,10 @@ function myFunction() {
         document.getElementById('myUL').style.display = 'block'
     }
 }
+let SavedList = localStorage.getItem("savedList")
+let LikedOrDislikedAlready = SavedList.split(",");
 
 
-
-let LikedOrDislikedAlready = []
 document.querySelectorAll('.icon-thumbs-up').forEach(item => {
     item.addEventListener('click', event => {
 
@@ -50,12 +50,13 @@ document.querySelectorAll('.icon-thumbs-up').forEach(item => {
                     let value = item.textContent
                     value++
                     item.textContent = value
+                    LikedOrDislikedAlready.push(item.accessKey);
+                    localStorage.setItem("savedList", LikedOrDislikedAlready);
                 }
                 else {
                     alert("Ops, något gick fel!")
                 }
             }
-            LikedOrDislikedAlready.push(item.accessKey)
             request.send()
         }
         else {
@@ -74,12 +75,12 @@ document.querySelectorAll('.icon-thumbs-down').forEach(item => {
                     let value = item.textContent
                     value++
                     item.textContent = value
+                    LikedOrDislikedAlready.push(item.accessKey)
                 }
                 else {
                     alert("Ops, något gick fel!")
                 }
             }
-            LikedOrDislikedAlready.push(item.accessKey)
             request.send()
         }
         else {
