@@ -78,11 +78,27 @@ namespace Interaktiva20_4.Data
 
             return new HomeViewModel(resultOmdb.Result, savedList);
         }
+        public async Task<HomeViewModel> PresentIndex(string ID)
+        {
+            var tasks = new List<Task>();
+            //var resultCmdb =  GetMoviesCmdb();
+            var resultOmdb = GetMoviesByID(ID);
 
+            tasks.Add(resultOmdb);
+            //tasks.Add(resultCmdb);
+            await Task.WhenAll(tasks);
+
+            return new HomeViewModel(resultOmdb.Result);
+        }
         public async Task<SearchDTO> GetMoviesBySearch(string search)
         {
             var APIString = $"/?apikey={ApiKey}&s=" + search;
             return await apiClient.GetAsync<SearchDTO>(baseUrlOmdb + APIString); 
+        }
+        public async Task<Movie> GetMoviesByID(string ID)
+        {
+            var APIString = $"/?apikey={ApiKey}&i=" + ID;
+            return await apiClient.GetAsync<Movie>(baseUrlOmdb + APIString);
         }
     }
 }

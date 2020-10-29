@@ -16,6 +16,7 @@ namespace Interaktiva20_4.Models.ViewModel
         public List<Movie> MovieList { get; set; }
         public string  Title { get; set; }
         public string ImdbId { get; set; }
+        public Movie SelectedMovie { get; set; }
         public HomeViewModel(IEnumerable<MovieDTO> movies, IEnumerable<MovieInfoDTO> matching)
         {
             MovieList = movies
@@ -34,11 +35,11 @@ namespace Interaktiva20_4.Models.ViewModel
                 {
                     if (MovieList[i].imdbId == matching.ElementAt(j).imdbID)
                     {
-                        MovieList[i].title = matching.ElementAt(j).Title;
-                        MovieList[i].plot = matching.ElementAt(j).Plot;
-                        MovieList[i].img = matching.ElementAt(j).Poster;
-                        MovieList[i].actor = matching.ElementAt(j).Actors;
-                        MovieList[i].year = "(" + matching.ElementAt(j).Year + ")";
+                        MovieList[i].Title = matching.ElementAt(j).Title;
+                        MovieList[i].Plot = matching.ElementAt(j).Plot;
+                        MovieList[i].Poster = matching.ElementAt(j).Poster;
+                        MovieList[i].Actors = matching.ElementAt(j).Actors;
+                        MovieList[i].Year = "(" + matching.ElementAt(j).Year + ")";
                         MovieList[i].ratings = matching.ElementAt(j).Ratings;
                     }
                 }
@@ -57,11 +58,11 @@ namespace Interaktiva20_4.Models.ViewModel
                 .Search.Select(x => new Movie
                 {
                     imdbId = x.imdbID,
-                    title = x.Title,
-                    img = x.Poster,
-                    actor = x.Actors,
-                    plot = x.Plot,
-                    year = x.Year,
+                    Title = x.Title,
+                    Poster = x.Poster,
+                    Actors = x.Actors,
+                    Plot = x.Plot,
+                    Year = x.Year,
                     ratings = x.Ratings
                 }).ToList();
             for (int i = 0; i < MovieList.Count; i++)
@@ -82,6 +83,10 @@ namespace Interaktiva20_4.Models.ViewModel
             }
             
         }
+        public HomeViewModel(Movie movie)
+        {
+            SelectedMovie = movie;
+        }
 
         public IEnumerable<SelectListItem> Movies
         {
@@ -92,7 +97,7 @@ namespace Interaktiva20_4.Models.ViewModel
                     return MovieList.Select(x =>
                     new SelectListItem()
                     {
-                        Text = x.title,
+                        Text = x.Title,
                         Value = x.imdbId
                     });
                 }

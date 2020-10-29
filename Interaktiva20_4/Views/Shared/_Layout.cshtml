@@ -61,11 +61,11 @@
                             @for (int i = 0; i < Model.SavedList.Count(); i++)
                             {
                                 <li>
-                                    <a asp-action="Index" asp-controller="About" asp-route-id="@Model.SavedList.ElementAt(i).title">
-                                        <img class="search-Icon" src="@Model.SavedList.ElementAt(i).img">
-                                        <p id="titleTag">@Model.SavedList.ElementAt(i).title</p>
-                                        <p>@Model.SavedList.ElementAt(i).year</p>
-                                        <p id="actorTag">@Model.SavedList.ElementAt(i).actor</p>
+                                    <a asp-action="Index" asp-controller="About" asp-route-id="@Model.SavedList.ElementAt(i).imdbId">
+                                        <img class="search-Icon" src="@Model.SavedList.ElementAt(i).Poster">
+                                        <p id="titleTag">@Model.SavedList.ElementAt(i).Title</p>
+                                        <p>@Model.SavedList.ElementAt(i).Year</p>
+                                        <p id="actorTag">@Model.SavedList.ElementAt(i).Actors</p>
                                     </a>
                                 </li>
                             }

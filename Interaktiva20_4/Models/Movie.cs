@@ -10,11 +10,11 @@ namespace Interaktiva20_4.Models
         public string imdbId { get; set; }
         public int numberOfLikes { get; set; }
         public int numberOfDislikes { get; set; }
-        public string img { get; set; }
-        public string title { get; set; }
-        public string plot { get; set; }
-        public string year { get; set; }
-        public string actor { get; set; }
+        public string Poster { get; set; }
+        public string Title { get; set; }
+        public string Plot { get; set; }
+        public string Year { get; set; }
+        public string Actors { get; set; }
         public List<RatingsDTO> ratings { get; set; }
     }
 }
