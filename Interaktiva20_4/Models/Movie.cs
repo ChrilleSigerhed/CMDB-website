@@ -13,5 +13,7 @@ namespace Interaktiva20_4.Models
         public string img { get; set; }
         public string title { get; set; }
         public string plot { get; set; }
+        public string year { get; set; }
+        public string actor { get; set; }
     }
 }

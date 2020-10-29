@@ -1,30 +1,29 @@
-﻿using Interaktiva20_4.Data;
-using Interaktiva20_4.Models;
-using Interaktiva20_4.Models.DTO;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Interaktiva20_4.Data;
+using Interaktiva20_4.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Interaktiva20_4.Controllers
 {
-    public class AboutController : Controller
+    public class SearchController : Controller
     {
         #region notAcceptedChars
-        char[] notAcceptedChars = new char[] { ':', ';', '<', '>', '=', '?', '!', 
-            '@', '"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', 
+        char[] notAcceptedChars = new char[] { ':', ';', '<', '>', '=', '?', '!',
+            '@', '"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/',
             '[', ']', '^', '_', '`', '´', '{', '}', '~', ' '};
         #endregion
         private ICmdbRepository cmdbRepository;
 
-        public AboutController(ICmdbRepository cmdbRepository)
+        public SearchController(ICmdbRepository cmdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
         }
-        [Route("/About")]
+        [Route("/Search")]
         public async Task<IActionResult> Index(string ID)
         {
             ID = FixSearchString(ID);
@@ -50,13 +49,13 @@ namespace Interaktiva20_4.Controllers
             }
             for (int i = 0; i < ID.Length; i++)
             {
-                if (ID[i] == ' ' && ID[i+1] == ' ')
+                if (ID[i] == ' ' && ID[i + 1] == ' ')
                 {
                     ID = ID.Remove(i, 1);
                 }
-                
+
             }
-            if (ID.Length >=22)
+            if (ID.Length >= 22)
             {
                 ID = ID.Remove(22).ToLower();
             }
@@ -64,3 +63,4 @@ namespace Interaktiva20_4.Controllers
         }
     }
 }
+

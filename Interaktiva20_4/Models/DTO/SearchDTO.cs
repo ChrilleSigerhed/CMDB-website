@@ -7,6 +7,6 @@ namespace Interaktiva20_4.Models.DTO
 {
     public class SearchDTO
     {
-        public List<MovieInfoDTO> Search { get; set; }
+        public IEnumerable<MovieInfoDTO> Search { get; set; }
     }
 }

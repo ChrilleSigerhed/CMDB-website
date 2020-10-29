@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Interaktiva20_4.Controllers;
+using Newtonsoft.Json;
 
 namespace Interaktiva20_4.Models.ViewModel
 {
@@ -36,6 +37,8 @@ namespace Interaktiva20_4.Models.ViewModel
                         MovieList[i].title = matching.ElementAt(j).Title;
                         MovieList[i].plot = matching.ElementAt(j).Plot;
                         MovieList[i].img = matching.ElementAt(j).Poster;
+                        MovieList[i].actor = matching.ElementAt(j).Actors;
+                        MovieList[i].year = "(" + matching.ElementAt(j).Year + ")";
                     }
                 }
             }
@@ -46,16 +49,35 @@ namespace Interaktiva20_4.Models.ViewModel
                 .OrderBy(x => x.numberOfDislikes - x.numberOfLikes)
                 .ToList();
         }
-        public HomeViewModel(SearchDTO searchResult)
+        public HomeViewModel(SearchDTO searchResult, List<Movie> savedList)
         {
-
+           
             MovieList = searchResult
                 .Search.Select(x => new Movie
                 {
                     imdbId = x.imdbID,
                     title = x.Title,
-                    img = x.Poster
+                    img = x.Poster,
+                    actor = x.Actors,
+                    plot = x.Plot,
+                    year = x.Year,
                 }).ToList();
+            for (int i = 0; i < MovieList.Count; i++)
+            {
+                for (int j = 0; j < savedList.Count; j++)
+                {
+                    if (MovieList[i].imdbId == savedList[j].imdbId)
+                    {
+                        MovieList[i].numberOfLikes = savedList[j].numberOfLikes;
+                        MovieList[i].numberOfDislikes = savedList[j].numberOfDislikes;
+                    }
+                    else if(j == savedList.Count)
+                    {
+                        MovieList[i].numberOfLikes = 0;
+                        MovieList[i].numberOfDislikes = 0;
+                    }
+                }
+            }
             
         }
 

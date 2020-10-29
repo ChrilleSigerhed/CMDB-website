@@ -1,4 +1,5 @@
-﻿using Interaktiva20_4.Models.DTO;
+﻿using Interaktiva20_4.Models;
+using Interaktiva20_4.Models.DTO;
 using Interaktiva20_4.Models.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Interaktiva20_4.Data
 
         Task<HomeViewModel> PresentIndex();
         
-        Task<HomeViewModel> PresentIndex(string search);
+        Task<HomeViewModel> PresentIndex(string search, List<Movie> savedList);
 
         Task<SearchDTO> GetMoviesBySearch(string search);
 

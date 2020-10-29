@@ -1,5 +1,6 @@
 ﻿using Interaktiva20_4.Data;
 using Interaktiva20_4.Infrastructure;
+using Interaktiva20_4.Models;
 using Interaktiva20_4.Models.DTO;
 using Interaktiva20_4.Models.ViewModel;
 using Microsoft.AspNetCore.Hosting;
@@ -47,7 +48,7 @@ namespace Interaktiva20_4.Test
             return new HomeViewModel(resultCmdb, resultOmdb.Result);
         }
 
-        public Task<HomeViewModel> PresentIndex(string search)
+        public Task<HomeViewModel> PresentIndex(string search, List<Movie> savedList)
         {
             throw new NotImplementedException();
         }
