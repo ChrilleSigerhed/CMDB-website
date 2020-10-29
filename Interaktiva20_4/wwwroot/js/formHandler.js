@@ -36,17 +36,7 @@ function myFunction() {
     }
 }
 
-let movies = null;
-var request = new XMLHttpRequest()
-request.open('GET', 'https://localhost:44313/api/movie', true)
-request.onload = function () {
-    var data = JSON.parse(this.response)
-    movies = data
-    data.forEach((movie) => {
-        console.log(movie.imdbID)
-    })
-}
-request.send()
+
 
 let LikedOrDislikedAlready = []
 document.querySelectorAll('.icon-thumbs-up').forEach(item => {
