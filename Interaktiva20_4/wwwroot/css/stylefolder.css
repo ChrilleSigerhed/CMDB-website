@@ -104,12 +104,12 @@
 #searchResultBoxes {
     text-align: center;
     width: 15%;
-    min-height: 450px;
+    min-height: 375px;
     min-width: 175px;
     max-width: 175px !important;
     margin-bottom: 30px;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-left: 1%;
+    margin-right: 1%;
     padding-left: 0 !important;
     padding-right: 0 !important;
     display: inline-block;
@@ -127,7 +127,7 @@
     margin-bottom: 0;
     text-decoration: none;
     border-left: none;
-    min-height: 160px;
+    min-height: 80px;
 }
 
 #searchResultBoxes p {

@@ -2,24 +2,39 @@
 <body class="single">
     <div id="fh5co-single" class="container-fluid pb-4 pt-4 paddding">
         
-            
+        <div class="container">
                 <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
                     <div class="gtco-container" id="searchResultContaint">
 
                         @foreach (var movie in Model.MovieList)
                         {
+                            string title = "";
+                            @for (int i = 0; i < movie.title.Length; i++)
+                            {
+                                if (movie.title.Length > 40)
+                                {
+                                    title = movie.title.Remove(40) + "...";
+                                }
+                                else 
+                                {
+                                    title = movie.title;
+                                }
+                            }
                             <div class="col-md-4 animate-box" id="searchResultBoxes">
-                                <img src="@movie.img" onerror="this.src='/images/bild_saknas.jpg'" />
-                                <blockquote><b>@movie.title (@movie.year)</b></blockquote>
-                                <p>@movie.numberOfLikes       @movie.numberOfDislikes</p>
-                                <a asp-action="Index" asp-controller="About" asp-route-id="@movie.imdbId">
-                                    <button class="btn btn-primary btn-outline" type="submit">
-                                        More
-                                    </button>
-                                </a>
+                                
+                                    <img src="@movie.img" onerror="this.src='/images/bild_saknas.jpg'" />
+                                    <blockquote><b> @title (@movie.year)</b></blockquote>
+                                    <p>@movie.numberOfLikes       @movie.numberOfDislikes</p>
+                                    <a asp-action="Index" asp-controller="About" asp-route-id="@movie.imdbId">
+                                        <button class="btn btn-primary btn-outline" type="submit">
+                                            More
+                                        </button>
+                                    </a>
+                                
                             </div>
                         }
                     </div>
+
                     <div class="movie_info_outline">
                         <section>
                             <img src=@Model.MovieList[0].img>
@@ -76,8 +91,8 @@
                         ornare.
                     </p>
                 </div>
-            
-        
+
+        </div>
     </div>
     
 </body>
