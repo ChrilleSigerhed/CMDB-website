@@ -39,7 +39,7 @@ namespace Interaktiva20_4.Data
             List<MovieInfoDTO> movieInfoList = new List<MovieInfoDTO>();
             for (int i = 0; i < resultCmdb.Count(); i++)
             {
-                var APIString = $"/?apikey={ApiKey}&i=" + resultCmdb.ElementAt(i).imdbId;
+                var APIString = $"/?apikey={ApiKey}&i=" + resultCmdb.ElementAt(i).imdbId + "&plot=full";
                 var task = apiClient.GetAsync<MovieInfoDTO>(baseUrlOmdb + APIString);
                 tasks.Add(task);
             }
