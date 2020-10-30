@@ -61,5 +61,10 @@ namespace Interaktiva20_4.Test
         {
             throw new NotImplementedException();
         }
+
+        public Task<HomeViewModel> PresentIndexID(string iD, List<Movie> savedList)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

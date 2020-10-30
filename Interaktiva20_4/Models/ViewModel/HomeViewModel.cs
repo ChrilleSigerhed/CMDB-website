@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Interaktiva20_4.Controllers;
 using Newtonsoft.Json;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Interaktiva20_4.Models.ViewModel
 {
@@ -83,10 +84,17 @@ namespace Interaktiva20_4.Models.ViewModel
             }
             
         }
-        public HomeViewModel(Movie movie)
+        public HomeViewModel(Movie movie, List<Movie> savedList)
         {
             SelectedMovie = movie;
-            
+            for (int i = 0; i < savedList.Count; i++)
+            {
+                if(savedList[i].imdbId == SelectedMovie.imdbId)
+                {
+                    SelectedMovie.numberOfLikes = savedList[i].numberOfLikes;
+                    SelectedMovie.numberOfDislikes = savedList[i].numberOfDislikes;
+                }
+            }
         }
 
         public IEnumerable<SelectListItem> Movies

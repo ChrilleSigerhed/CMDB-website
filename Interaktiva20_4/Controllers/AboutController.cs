@@ -30,7 +30,7 @@ namespace Interaktiva20_4.Controllers
         {
             ID = FixSearchString(ID);
             var savedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
-            var viewModel = await cmdbRepository.PresentIndex(ID);
+            var viewModel = await cmdbRepository.PresentIndexID(ID, savedList);
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
             {
                 HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.MovieList));
