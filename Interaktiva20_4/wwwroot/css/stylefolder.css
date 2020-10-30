@@ -68,14 +68,13 @@
 }
 .TopMovieInfo{
     float: right;
-    height: 550px;
+    min-height: 550px;
     width: 66%;
     text-align: left;
      
 }
 .TopRatedh1{
-    padding-bottom: 40px;
-    padding-top: 40px;
+    padding-bottom: 20px;
     text-decoration: underline;
     text-align: center;
     font-weight: bold;
@@ -162,4 +161,5 @@
 .TopMoviePoster {
     vertical-align: middle;
     width: 33%;
+    height: 100%;
 }
