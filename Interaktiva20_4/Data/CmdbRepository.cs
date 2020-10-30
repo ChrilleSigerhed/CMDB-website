@@ -78,7 +78,7 @@ namespace Interaktiva20_4.Data
 
             return new HomeViewModel(resultOmdb.Result, savedList);
         }
-        public async Task<HomeViewModel> PresentIndex(string ID)
+        public async Task<HomeViewModel> PresentIndexID(string ID, List<Movie> savedList)
         {
             var tasks = new List<Task>();
             //var resultCmdb =  GetMoviesCmdb();
@@ -88,7 +88,7 @@ namespace Interaktiva20_4.Data
             //tasks.Add(resultCmdb);
             await Task.WhenAll(tasks);
 
-            return new HomeViewModel(resultOmdb.Result);
+            return new HomeViewModel(resultOmdb.Result, savedList);
         }
         public async Task<SearchDTO> GetMoviesBySearch(string search)
         {
