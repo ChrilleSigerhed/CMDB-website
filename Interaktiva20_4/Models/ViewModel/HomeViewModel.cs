@@ -43,6 +43,7 @@ namespace Interaktiva20_4.Models.ViewModel
                         MovieList[i].Year = "(" + matching.ElementAt(j).Year + ")";
                         MovieList[i].ratings = matching.ElementAt(j).Ratings;
                     }
+                    MovieList[i] = FixNAValues(MovieList[i]);
                 }
             }
         }
@@ -65,7 +66,9 @@ namespace Interaktiva20_4.Models.ViewModel
                     Plot = x.Plot,
                     Year = x.Year,
                     ratings = x.Ratings
+                    
                 }).ToList();
+            
             for (int i = 0; i < MovieList.Count; i++)
             {
                 for (int j = 0; j < savedList.Count; j++)
@@ -80,13 +83,15 @@ namespace Interaktiva20_4.Models.ViewModel
                         MovieList[i].numberOfLikes = 0;
                         MovieList[i].numberOfDislikes = 0;
                     }
+                    MovieList[i] = FixNAValues(MovieList[i]);
                 }
             }
-            
         }
         public HomeViewModel(Movie movie, List<Movie> savedList)
         {
+            
             SelectedMovie = movie;
+            SelectedMovie = FixNAValues(movie);
             for (int i = 0; i < savedList.Count; i++)
             {
                 if(savedList[i].imdbId == SelectedMovie.imdbId)
@@ -112,6 +117,28 @@ namespace Interaktiva20_4.Models.ViewModel
                 }
                 return null;
             }
+        }
+        public Movie FixNAValues(Movie movie)
+        {
+            string stringNA = "Information missing";
+            if (movie.Poster == "N/A" || movie.Poster == null)
+            {
+                movie.Poster = "/images/imagenotfound.jpg";
+            }
+            if (movie.Plot == "N/A" || movie.Plot == null)
+            {
+                movie.Plot = stringNA;
+            }
+            if (movie.Year == "N/A" || movie.Year == null)
+            {
+                movie.Year = stringNA;
+            }
+            if (movie.Actors == "N/A" || movie.Actors == null)
+            {
+                movie.Actors = stringNA;
+            }
+
+            return movie;
         }
     }
 }
