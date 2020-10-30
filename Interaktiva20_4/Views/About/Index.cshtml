@@ -1,28 +1,41 @@
 ﻿@model HomeViewModel
 <body class="single">
-    <div class="container-fluid fh5co_header_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 fh5co_mediya_center">
-                    <a href="#" class="color_fff fh5co_mediya_setting">
-                        <i class="fa fa-clock-o"></i>&nbsp;&nbsp;&nbsp;Friday, 5 January 2018
-                    </a>
-                    <div class="d-inline-block fh5co_trading_posotion_relative">
-                        <a href="#" class="treding_btn">Trending</a>
-                        <div class="fh5co_treding_position_absolute"></div>
+    <div class="container" id="body_margin">
+        <div class="row mx-0">
+            <div class="col-md-12 col-12 paddding animate-box" data-animate-effect="fadeIn">
+                <div class="fh5co_suceefh5co_height">
+                    <img src=@Model.SelectedMovie.Poster alt="img" />
+                    <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                    <div class="TopMovieInfo">
+                        <h1 class="TopRatedh1">Top Rated Movie Right Now!</h1>
+                        <h2 class="TopRatedh2">@Model.SelectedMovie.Title</h2>
+                        <p>@Model.SelectedMovie.Plot</p>
+                        <a>CMDb Betyg: </a>
+                        <a style="font-size:35px;" class="icon-thumbs-up" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfLikes</a>
+                        <a style="font-size:35px;" class="icon-thumbs-down" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfDislikes</a>
+                        <br />
+                        @for (int i = 0; i < Model.SelectedMovie.ratings.Count; i++)
+                        {
+                            <br />
+                            @if (@Model.SelectedMovie.ratings[i].Source == "Internet Movie Database")
+                            {<img src="~/images/imdb.png" />}
+                            @if (@Model.SelectedMovie.ratings[i].Source == "Rotten Tomatoes")
+                            {<img src="~/images/rottentomatoes.png" />}
+                            @if (@Model.SelectedMovie.ratings[i].Source == "Metacritic")
+                            {<img src="~/images/metacritic.png" />}
+                            <a>@Model.SelectedMovie.ratings[i].Source:</a>
+                            <a style="font-size:20px;">@Model.SelectedMovie.ratings[i].Value</a>
+                            <br />
+                        }
                     </div>
-                    <a href="#" class="color_fff fh5co_mediya_setting">Instagram’s big redesign goes live with black-and-white app</a>
                 </div>
             </div>
         </div>
     </div>
-    <img src="@Model.SelectedMovie.Poster"/>
     <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-3 fh5co_padding_menu">
-                    <img src="@Model.SelectedMovie.Poster" alt="img" class="fh5co_logo_width" />
-                </div>
+                
                 <div class="col-12 col-md-9 align-self-center fh5co_mediya_right">
                     <div class="text-center d-inline-block">
                         <a class="fh5co_display_table"><div class="fh5co_verticle_middle"><i class="fa fa-search"></i></div></a>
