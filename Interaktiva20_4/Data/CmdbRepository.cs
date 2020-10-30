@@ -98,7 +98,7 @@ namespace Interaktiva20_4.Data
         public async Task<Movie> GetMoviesByID(string ID)
         {
             var APIString = $"/?apikey={ApiKey}&i=" + ID;
-            return await apiClient.GetAsync<Movie>(baseUrlOmdb + APIString);
+            return await apiClient.GetAsync<Movie>(baseUrlOmdb + APIString + "&plot=full");
         }
     }
 }
