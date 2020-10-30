@@ -7,9 +7,8 @@
                     <img src=@Model.SelectedMovie.Poster alt="img" />
                     <div class="fh5co_suceefh5co_height_position_absolute"></div>
                     <div class="TopMovieInfo">
-                        <h1 class="TopRatedh1">Top Rated Movie Right Now!</h1>
                         <h2 class="TopRatedh2">@Model.SelectedMovie.Title</h2>
-                        <p>@Model.SelectedMovie.Plot</p>
+                        <p class="movie_plot">@Model.SelectedMovie.Plot</p>
                         <a>CMDb Betyg: </a>
                         <a style="font-size:35px;" class="icon-thumbs-up" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfLikes</a>
                         <a style="font-size:35px;" class="icon-thumbs-down" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfDislikes</a>

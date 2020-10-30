@@ -114,15 +114,15 @@ document.querySelectorAll('.icon-thumbs-down').forEach(item => {
         if (LikedOrDislikedAlready.includes(item.accessKey) == false) {
             let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/dislike')
             
-                if (request.status == 200) {
-                    let value = item.textContent
-                    value++
-                    item.textContent = value
-                    LikedOrDislikedAlready.push(item.accessKey)
-                }
-                else {
-                    alert("Ops, något gick fel!")
-                }
+            if (request.status == 200) {
+                let value = item.textContent
+                value++
+                item.textContent = value
+                LikedOrDislikedAlready.push(item.accessKey)
+            }
+            else {
+                alert("Ops, något gick fel!")
+            }
         }
         else {
             alert("Du har redan röstat på den filmen!");
@@ -130,13 +130,13 @@ document.querySelectorAll('.icon-thumbs-down').forEach(item => {
     })
 })
 
-let TopMoviePlot = document.querySelector('#body_margin > div > div > div > div.TopMovieInfo > p')
+let TopMoviePlot = document.querySelector('.movie_plot')
 const fullPlot = TopMoviePlot.textContent
-const shortPlotText = TopMoviePlot.textContent.split(".")[0] + "..."
 const button = document.createElement("a")
+const shortPlotText = TopMoviePlot.textContent.substring(0, 150) + "..."
 button.className = "readMoreButton"
 TopMoviePlot.textContent = shortPlotText
-if (fullPlot.length > 40) {
+if (fullPlot.length > 150) {
     button.textContent = "Show more"
     TopMoviePlot.appendChild(button)
 }
