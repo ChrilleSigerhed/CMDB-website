@@ -12,7 +12,7 @@
                     <div class="TopMovieInfo">
                         <h1 class="TopRatedh1">Top Rated Movie Right Now!</h1>
                         <h2 class="TopRatedh2">@Model.SavedList[0].Title</h2>
-                        <p>@Model.SavedList[0].Plot<a class="readMoreButton" onclick="showMoreOrLess()"></a></p>
+                        <p>@Model.SavedList[0].Plot</p>
                         <a>CMDb Betyg: </a>
                         <a style="font-size:35px;" class="icon-thumbs-up" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfLikes</a>
                         <a style="font-size:35px;" class="icon-thumbs-down" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfDislikes</a>
