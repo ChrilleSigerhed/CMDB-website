@@ -130,54 +130,28 @@ document.querySelectorAll('.icon-thumbs-down').forEach(item => {
     })
 })
 
-//// Read more knappen för plot på den högst rankade filmen
-//TopMoviePlot = document.querySelector('#body_margin > div > div > div > div.TopMovieInfo > p')
-//const fullPlot = TopMoviePlot.textContent
-//const shortPlotText = TopMoviePlot.textContent.split(".")[0] + "..."
-//TopMoviePlot.textContent = shortPlotText
-//const button = document.createElement("a")
-//button.textContent = "Read more"
-//button.className = "readMoreButton"
-//TopMoviePlot.appendChild(button)
-//// Visar hela plotten
-//document.querySelector(".readMoreButton").addEventListener('click', function () {
-//    TopMoviePlot.textContent = fullPlot
-//})
-
-
-
-
-function showMoreOrLess() {
-
-
-}
-// Read more knappen för plot på den högst rankade filmen
-TopMoviePlot = document.querySelector('#body_margin > div > div > div > div.TopMovieInfo > p')
+let TopMoviePlot = document.querySelector('#body_margin > div > div > div > div.TopMovieInfo > p')
 const fullPlot = TopMoviePlot.textContent
 const shortPlotText = TopMoviePlot.textContent.split(".")[0] + "..."
+const button = document.createElement("a")
+button.className = "readMoreButton"
 TopMoviePlot.textContent = shortPlotText
 if (fullPlot.length > 40) {
-    const button = document.createElement("a")
     button.textContent = "Show more"
-    button.className = "readMoreButton"
     TopMoviePlot.appendChild(button)
-    // Visar hela plotten
-    document.querySelector(".readMoreButton").addEventListener('click', function () {
+}
+button.addEventListener('click', function() {
+    if (fullPlot.length > 40) {
         if (button.textContent == "Show more") {
             TopMoviePlot.textContent = fullPlot
-            const button = document.createElement("a")
             button.textContent = "Show less"
-            button.className = "readMoreButton"
             TopMoviePlot.appendChild(button)
         }
         else {
-            TopMoviePlot.textContent = shortText
-            const button = document.createElement("a")
+            TopMoviePlot.textContent = shortPlotText
             button.textContent = "Show more"
-            button.className = "readMoreButton"
             TopMoviePlot.appendChild(button)
         }
-    })
-    
-}
+    }
+})
 
