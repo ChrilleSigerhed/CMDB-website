@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Interaktiva20_4.Controllers
@@ -35,6 +36,7 @@ namespace Interaktiva20_4.Controllers
                 HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.MovieList));
             }
             viewModel.SavedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
+            
             return View(viewModel);
         }
         public string FixSearchString(string ID)

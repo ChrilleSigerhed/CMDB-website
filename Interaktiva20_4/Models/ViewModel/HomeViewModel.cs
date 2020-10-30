@@ -86,6 +86,7 @@ namespace Interaktiva20_4.Models.ViewModel
         public HomeViewModel(Movie movie)
         {
             SelectedMovie = movie;
+            
         }
 
         public IEnumerable<SelectListItem> Movies
