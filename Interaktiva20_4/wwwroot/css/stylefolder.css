@@ -159,3 +159,7 @@
     color: dodgerblue !important;
     cursor: pointer
 }
+.TopMoviePoster {
+    vertical-align: middle;
+    width: 33%;
+}
