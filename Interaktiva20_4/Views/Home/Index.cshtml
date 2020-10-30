@@ -4,16 +4,15 @@
             <div class="fh5co_suceefh5co_height">
                 <a asp-action="Index" asp-controller="About" asp-route-id="@Model.SavedList[0].imdbId">
                     <img class="TopMoviePoster" src=@Model.SavedList[0].Poster alt="img">
-                    <div class="fh5co_suceefh5co_height_position_absolute">
-                    </div>
                 </a>
                 <div class="TopMovieInfo">
                     <h1 class="TopRatedh1">Top Rated Movie Right Now!</h1>
                     <h2 class="TopRatedh2">@Model.SavedList[0].Title</h2>
                     <p class="movie_plot">@Model.SavedList[0].Plot</p>
+                    <img src="~/images/cmdbicon.png" />
                     <a>CMDb Betyg: </a>
-                    <a style="font-size:35px;" class="icon-thumbs-up" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfLikes</a>
-                    <a style="font-size:35px;" class="icon-thumbs-down" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfDislikes</a>
+                    <a style="font-size:24px;" class="icon-thumbs-up" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfLikes</a>
+                    <a style="font-size:24px;" class="icon-thumbs-down" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfDislikes</a>
                     <br />
                     @for (int i = 0; i < Model.SavedList[0].ratings.Count; i++)
                     {
