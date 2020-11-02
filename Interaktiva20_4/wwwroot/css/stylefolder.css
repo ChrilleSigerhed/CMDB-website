@@ -166,15 +166,7 @@
 #body_margin_about{
     min-height: 800px;
 }
-#footers_to_all_pages {
-    clear: both !important;
-    position: relative !important;
-    left: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    text-align: center !important;
-    margin-top: -200px !important;
-}
+
 .center {
     display: block;
     margin-left: auto;

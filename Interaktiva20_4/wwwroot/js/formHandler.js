@@ -75,9 +75,13 @@ function myFunction() {
     }
     //if (numberOfBlocks == 0) {
     //    //const newItem = document.querySelector('#shopping-list')
-    //    const newNode = document.createElement('li')
-    //    newNode.textContent = 'No match'
-    //    ul.appendChild(newNode)
+    //    const newLi = document.createElement('li')
+    //    const newA = document.createElement('a')
+    //    const newP = document.createElement('p')
+    //    newP.textContent = 'No match'
+    //    newA.appendChild(newP)
+    //    newLi.appendChild(newA)
+    //    ul.appendChild(newLi)
 
 
     //}
