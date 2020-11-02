@@ -163,3 +163,9 @@
     width: 33%;
     height: 100%;
 }
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}

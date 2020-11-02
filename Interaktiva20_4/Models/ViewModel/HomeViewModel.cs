@@ -55,37 +55,41 @@ namespace Interaktiva20_4.Models.ViewModel
         }
         public HomeViewModel(SearchDTO searchResult, List<Movie> savedList)
         {
-           
-            MovieList = searchResult
-                .Search.Select(x => new Movie
+          
+                MovieList = searchResult
+                               .Search.Select(x => new Movie
+                               {
+                                   imdbId = x.imdbID,
+                                   Title = x.Title,
+                                   Poster = x.Poster,
+                                   Actors = x.Actors,
+                                   Plot = x.Plot,
+                                   Year = x.Year,
+                                   ratings = x.Ratings
+
+                               }).ToList();
+
+                for (int i = 0; i < MovieList.Count; i++)
                 {
-                    imdbId = x.imdbID,
-                    Title = x.Title,
-                    Poster = x.Poster,
-                    Actors = x.Actors,
-                    Plot = x.Plot,
-                    Year = x.Year,
-                    ratings = x.Ratings
-                    
-                }).ToList();
-            
-            for (int i = 0; i < MovieList.Count; i++)
-            {
-                for (int j = 0; j < savedList.Count; j++)
-                {
-                    if (MovieList[i].imdbId == savedList[j].imdbId)
+                    for (int j = 0; j < savedList.Count; j++)
                     {
-                        MovieList[i].numberOfLikes = savedList[j].numberOfLikes;
-                        MovieList[i].numberOfDislikes = savedList[j].numberOfDislikes;
+                        if (MovieList[i].imdbId == savedList[j].imdbId)
+                        {
+                            MovieList[i].numberOfLikes = savedList[j].numberOfLikes;
+                            MovieList[i].numberOfDislikes = savedList[j].numberOfDislikes;
+                        }
+                        else if (j == savedList.Count)
+                        {
+                            MovieList[i].numberOfLikes = 0;
+                            MovieList[i].numberOfDislikes = 0;
+                        }
+                        MovieList[i] = FixNAValues(MovieList[i]);
                     }
-                    else if(j == savedList.Count)
-                    {
-                        MovieList[i].numberOfLikes = 0;
-                        MovieList[i].numberOfDislikes = 0;
-                    }
-                    MovieList[i] = FixNAValues(MovieList[i]);
                 }
-            }
+            
+           
+           
+           
         }
         public HomeViewModel(Movie movie, List<Movie> savedList)
         {
