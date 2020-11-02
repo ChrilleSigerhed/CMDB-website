@@ -52,7 +52,6 @@
                     </div>
                     <div class="clearfix" id="fixed">
                         <ul id="myUL" style="display: none">
-                            
                             @for (int i = 0; i < Model.SavedList.Count(); i++)
                             {
                                 <li>
@@ -74,7 +73,7 @@
 
     @RenderBody();
 
-    <div class="container-fluid fh5co_footer_bg pb-3">
+    <div class="container-fluid fh5co_footer_bg pb-3" id="footers_to_all_pages">
         <div class="container animate-box">
             <div class="row">
                 <div class="col-12 spdp_right py-5">

@@ -19,12 +19,13 @@ namespace Interaktiva20_4.Data
     {
         private string baseUrlCmdb;
         private string baseUrlOmdb;
-        private string ApiKey = "4c824471";
+        private string APIKey;
         IApiClient apiClient;
         public CmdbRepository(IConfiguration configuration, IApiClient apiClient)
         {
             baseUrlCmdb = configuration.GetValue<string>("CmdbApi:BaseUrl");
             baseUrlOmdb = configuration.GetValue<string>("OmdbApi:BaseUrl");
+            APIKey = configuration.GetValue<string>("APIKey:APIKey");
             this.apiClient = apiClient;
         }
 
@@ -39,7 +40,7 @@ namespace Interaktiva20_4.Data
             List<MovieInfoDTO> movieInfoList = new List<MovieInfoDTO>();
             for (int i = 0; i < resultCmdb.Count(); i++)
             {
-                var APIString = $"/?apikey={ApiKey}&i=" + resultCmdb.ElementAt(i).imdbId + "&plot=full";
+                var APIString = $"/?apikey={APIKey}&i=" + resultCmdb.ElementAt(i).imdbId + "&plot=full";
                 var task = apiClient.GetAsync<MovieInfoDTO>(baseUrlOmdb + APIString);
                 tasks.Add(task);
             }
@@ -92,12 +93,12 @@ namespace Interaktiva20_4.Data
         }
         public async Task<SearchDTO> GetMoviesBySearch(string search)
         {
-            var APIString = $"/?apikey={ApiKey}&s=" + search;
+            var APIString = $"/?apikey={APIKey}&s=" + search;
             return await apiClient.GetAsync<SearchDTO>(baseUrlOmdb + APIString); 
         }
         public async Task<Movie> GetMoviesByID(string ID)
         {
-            var APIString = $"/?apikey={ApiKey}&i=" + ID;
+            var APIString = $"/?apikey={APIKey}&i=" + ID;
             return await apiClient.GetAsync<Movie>(baseUrlOmdb + APIString + "&plot=full");
         }
     }

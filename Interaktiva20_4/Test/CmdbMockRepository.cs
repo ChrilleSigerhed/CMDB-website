@@ -66,5 +66,10 @@ namespace Interaktiva20_4.Test
         {
             throw new NotImplementedException();
         }
+
+        public Task<Movie> GetMoviesByID(string ID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

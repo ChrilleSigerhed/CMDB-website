@@ -1,5 +1,4 @@
 ﻿
-
 document.getElementById('myUL').style.display = "none"
 function onChange(val) {
     window.location="/about/search?selectedMovie=" +val
@@ -74,6 +73,14 @@ function myFunction() {
             }
         }
     }
+    //if (numberOfBlocks == 0) {
+    //    //const newItem = document.querySelector('#shopping-list')
+    //    const newNode = document.createElement('li')
+    //    newNode.textContent = 'No match'
+    //    ul.appendChild(newNode)
+
+
+    //}
     if (input.value.length == 0 || input.value == " ") {
         document.getElementById('myUL').style.display = 'none'
     }
