@@ -75,7 +75,6 @@
 }
 .TopRatedh1{
     padding-bottom: 20px;
-    text-decoration: underline;
     text-align: center;
     font-weight: bold;
 }
@@ -172,4 +171,13 @@
     margin-left: auto;
     margin-right: auto;
     width: 20%;
+}
+.Top_movie_title {
+    color: black !important;
+    
+
+}
+.Top_movie_title:hover {
+    color:darkgray !important;
+    text-decoration: none !important;
 }
