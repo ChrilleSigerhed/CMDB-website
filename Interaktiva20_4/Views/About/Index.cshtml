@@ -1,4 +1,9 @@
 ﻿@model HomeViewModel
+    <div class="container-fluid pt-3">
+        <div class="container">
+            <h2 class="TopRatedh1">@Model.SelectedMovie.Title</h2>
+        </div>
+    </div>
 <body class="single">
     <div class="container" id="body_margin_about">
         <div class="row mx-0">
@@ -6,32 +11,33 @@
                 <div class="fh5co_suceefh5co_height">
                     <img src=@Model.SelectedMovie.Poster alt="img" />
                     <div class="TopMovieInfo">
-                        <h2 class="TopRatedh2">@Model.SelectedMovie.Title</h2>
                         <span class="aboutInfo">Plot: </span><p class="movie_plot">@Model.SelectedMovie.Plot</p>
                         <span class="aboutInfo">Actors: </span><p>@Model.SelectedMovie.Actors</p>
                         <span class="aboutInfo">Released: </span><p>@Model.SelectedMovie.Year</p>
                         <span class="aboutInfo">Directed by: </span><p>@Model.SelectedMovie.Director</p>
                         <span class="aboutInfo">Runtime: </span><p>@Model.SelectedMovie.Runtime</p>
+                    </div>
+                </div>
+                <div style="display:inline-block;" class="Rating_div_hela">
+                    <div class="Rating_div">
                         <img src="~/images/cmdbicon.png" />
                         <a>CMDb Betyg: </a>
-                        <a style="font-size:24px;" class="icon-thumbs-up" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfLikes</a>
-                        <a style="font-size:24px;" class="icon-thumbs-down" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfDislikes</a>
-                        <br />
-
-                        @for (int i = 0; i < Model.SelectedMovie.ratings.Count; i++)
-                        {
-                            <br />
-                            @if (@Model.SelectedMovie.ratings[i].Source == "Internet Movie Database")
-                            {<img src="~/images/imdb.png" />}
-                            @if (@Model.SelectedMovie.ratings[i].Source == "Rotten Tomatoes")
-                            {<img src="~/images/rottentomatoes.png" />}
-                            @if (@Model.SelectedMovie.ratings[i].Source == "Metacritic")
-                            {<img src="~/images/metacritic.png" />}
-                            <a>@Model.SelectedMovie.ratings[i].Source:</a>
-                            <a style="font-size:20px;">@Model.SelectedMovie.ratings[i].Value</a>
-                            <br />
-                        }
+                        <a style="font-size:24px;" class="icon-thumbs-up" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfLikes</a>
+                        <a style="font-size:24px;" class="icon-thumbs-down" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfDislikes</a>
                     </div>
+                    @for (int i = 0; i < Model.SavedList[0].ratings.Count; i++)
+                    {
+                        <div class="Rating_div">
+                            @if (@Model.SavedList[0].ratings[i].Source == "Internet Movie Database")
+                            {<img src="~/images/imdb.png" />}
+                            @if (@Model.SavedList[0].ratings[i].Source == "Rotten Tomatoes")
+                            {<img src="~/images/rottentomatoes.png" />}
+                            @if (@Model.SavedList[0].ratings[i].Source == "Metacritic")
+                            {<img src="~/images/metacritic.png" />}
+                            <a>@Model.SavedList[0].ratings[i].Source:</a>
+                            <a style="font-size:20px;">@Model.SavedList[0].ratings[i].Value</a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
