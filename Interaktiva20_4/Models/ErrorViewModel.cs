@@ -5,8 +5,10 @@ namespace Interaktiva20_4.Models
 {
     public class ErrorViewModel
     {
-        public string RequestId { get; set; }
+        public string SearchWord { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public bool ShowRequestId => !string.IsNullOrEmpty(SearchWord);
+
+        public List<Movie> SavedList { get; set; }
     }
 }
