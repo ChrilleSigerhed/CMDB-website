@@ -42,15 +42,15 @@ namespace Interaktiva20_4.Controllers
                 
                 List<Movie> sessionList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
                 List<MovieDTO> newList = new List<MovieDTO>();
-                //for (int i = 0; i < cmdbList.Count; i++)
-                //{
-                //    newList.Add(cmdbList[i]);
-                //}
+                for (int i = 0; i < cmdbList.Count; i++)
+                {
+                    newList.Add(cmdbList[i]);
+                }
                 for (int i = 0; i < cmdbList.Count; i++)
                 {
                     if (sessionList.Exists(x => x.imdbId == cmdbList[i].imdbId))
                     {
-                        newList.Add(cmdbList[i]);
+                        newList.Remove(cmdbList[i]);
                     }
                 }
                 
