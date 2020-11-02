@@ -7,12 +7,17 @@
                     <img src=@Model.SelectedMovie.Poster alt="img" />
                     <div class="TopMovieInfo">
                         <h2 class="TopRatedh2">@Model.SelectedMovie.Title</h2>
-                        <p class="movie_plot">@Model.SelectedMovie.Plot</p>
+                        <span class="aboutInfo">Plot: </span><p class="movie_plot">@Model.SelectedMovie.Plot</p>
+                        <span class="aboutInfo">Actors: </span><p>@Model.SelectedMovie.Actors</p>
+                        <span class="aboutInfo">Released: </span><p>@Model.SelectedMovie.Year</p>
+                        <span class="aboutInfo">Directed by: </span><p>@Model.SelectedMovie.Director</p>
+                        <span class="aboutInfo">Runtime: </span><p>@Model.SelectedMovie.Runtime</p>
                         <img src="~/images/cmdbicon.png" />
                         <a>CMDb Betyg: </a>
                         <a style="font-size:24px;" class="icon-thumbs-up" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfLikes</a>
                         <a style="font-size:24px;" class="icon-thumbs-down" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfDislikes</a>
                         <br />
+
                         @for (int i = 0; i < Model.SelectedMovie.ratings.Count; i++)
                         {
                             <br />
