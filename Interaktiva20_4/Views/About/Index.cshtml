@@ -22,20 +22,20 @@
                     <div class="Rating_div">
                         <img src="~/images/cmdbicon.png" />
                         <a>CMDb Betyg: </a>
-                        <a style="font-size:24px;" class="icon-thumbs-up" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfLikes</a>
-                        <a style="font-size:24px;" class="icon-thumbs-down" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfDislikes</a>
+                        <a style="font-size:24px;" class="icon-thumbs-up" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfLikes</a>
+                        <a style="font-size:24px;" class="icon-thumbs-down" accesskey="@Model.SelectedMovie.imdbId">@Model.SelectedMovie.numberOfDislikes</a>
                     </div>
-                    @for (int i = 0; i < Model.SavedList[0].ratings.Count; i++)
+                    @for (int i = 0; i < Model.SelectedMovie.ratings.Count; i++)
                     {
                         <div class="Rating_div">
-                            @if (@Model.SavedList[0].ratings[i].Source == "Internet Movie Database")
+                            @if (@Model.SelectedMovie.ratings[i].Source == "Internet Movie Database")
                             {<img src="~/images/imdb.png" />}
-                            @if (@Model.SavedList[0].ratings[i].Source == "Rotten Tomatoes")
+                            @if (@Model.SelectedMovie.ratings[i].Source == "Rotten Tomatoes")
                             {<img src="~/images/rottentomatoes.png" />}
-                            @if (@Model.SavedList[0].ratings[i].Source == "Metacritic")
+                            @if (@Model.SelectedMovie.ratings[i].Source == "Metacritic")
                             {<img src="~/images/metacritic.png" />}
-                            <a>@Model.SavedList[0].ratings[i].Source:</a>
-                            <a style="font-size:20px;">@Model.SavedList[0].ratings[i].Value</a>
+                            <a>@Model.SelectedMovie.ratings[i].Source:</a>
+                            <a style="font-size:20px;">@Model.SelectedMovie.ratings[i].Value</a>
                         </div>
                     }
                 </div>
