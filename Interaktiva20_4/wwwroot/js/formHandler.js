@@ -73,18 +73,6 @@ function myFunction() {
             }
         }
     }
-    //if (numberOfBlocks == 0) {
-    //    //const newItem = document.querySelector('#shopping-list')
-    //    const newLi = document.createElement('li')
-    //    const newA = document.createElement('a')
-    //    const newP = document.createElement('p')
-    //    newP.textContent = 'No match'
-    //    newA.appendChild(newP)
-    //    newLi.appendChild(newA)
-    //    ul.appendChild(newLi)
-
-
-    //}
     if (input.value.length == 0 || input.value == " ") {
         document.getElementById('myUL').style.display = 'none'
     }
@@ -94,26 +82,51 @@ function myFunction() {
     }
 }
 
-let LikedOrDislikedAlready = []
+
+
+let LikedOrDislikedAlready = new Array
+function SaveVote() {
+    sessionStorage.setItem('savedList', JSON.stringify(LikedOrDislikedAlready))
+}
 // Eventlistener för alla "Gilla knappar" som registerar en like
 document.querySelectorAll('.icon-thumbs-up').forEach(item => {
-    item.addEventListener('click', async function() {
-
-        if (LikedOrDislikedAlready.includes(item.accessKey) == false) {
-            let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/like')
-
-            if (request.status == 200) {
-                let value = item.textContent
-                value++
-                item.textContent = value
-                LikedOrDislikedAlready.push(item.accessKey)
+    item.addEventListener('click', async function () {
+        if (sessionStorage.getItem('savedList') != null)
+        {
+            let AlreadyVoted = JSON.parse(sessionStorage.getItem('savedList'))
+            if (AlreadyVoted.includes(item.accessKey) == false)
+            {
+                let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/like')
+                if (request.status == 200) {
+                    let value = item.textContent
+                    value++
+                    item.textContent = value
+                    LikedOrDislikedAlready.push(item.accessKey)
+                    SaveVote();
+                }
+                else {
+                    alert("Ops, något gick fel!")
+                }
             }
             else {
-                alert("Ops, något gick fel!")
+                alert("Du har redan röstat på den filmen!");
             }
         }
-        else {
-            alert("Du har redan röstat på den filmen!");
+        else
+        {
+            let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/like')
+            if (request.status == 200)
+            {
+                     let value = item.textContent
+                     value++
+                     item.textContent = value
+                     LikedOrDislikedAlready.push(item.accessKey)
+                     SaveVote();
+            }
+            else
+            {
+            alert("Ops, något gick fel!")
+            }
         }
     })
 })
@@ -121,25 +134,41 @@ document.querySelectorAll('.icon-thumbs-up').forEach(item => {
 // Eventlistener för alla "Ogilla knappar" som registerar en dislike
 document.querySelectorAll('.icon-thumbs-down').forEach(item => {
     item.addEventListener('click', async function() {
-
-        if (LikedOrDislikedAlready.includes(item.accessKey) == false) {
+        if (sessionStorage.getItem('savedList') != null) {
+            let AlreadyVoted = JSON.parse(sessionStorage.getItem('savedList'))
+            if (AlreadyVoted.includes(item.accessKey) == false) {
+                let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/dislike')
+                if (request.status == 200) {
+                    let value = item.textContent
+                    value++
+                    item.textContent = value
+                    LikedOrDislikedAlready.push(item.accessKey)
+                    SaveVote();
+                }
+                else {
+                    alert("Ops, något gick fel!")
+                }
+            }
+            else {
+                alert("Du har redan röstat på den filmen!");
+            }
+        }
+        else {
             let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/dislike')
-            
             if (request.status == 200) {
                 let value = item.textContent
                 value++
                 item.textContent = value
                 LikedOrDislikedAlready.push(item.accessKey)
+                SaveVote();
             }
             else {
                 alert("Ops, något gick fel!")
             }
         }
-        else {
-            alert("Du har redan röstat på den filmen!");
-        }
     })
 })
+
 
 let TopMoviePlot = document.querySelector('.movie_plot')
 const fullPlot = TopMoviePlot.textContent
