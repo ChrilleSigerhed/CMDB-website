@@ -336,12 +336,12 @@ html {
 }
 
 body {
-  font-family: 'Poppins';
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.5;
-  color: #292b2c;
-  background-color: #fff;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #292b2c;
+    background-color: #fdfbdb;
 }
 
 [tabindex="-1"]:focus {
