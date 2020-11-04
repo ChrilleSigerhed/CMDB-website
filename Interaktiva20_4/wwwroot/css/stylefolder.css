@@ -189,10 +189,7 @@
 .Top_movie_title {
     color: black !important;
 }
-.Top_movie_title:hover {
-    color:darkgray !important;
-    text-decoration: none !important;
-}
+
 .Rating_div {
     margin-right: 25px !important;
     display: inline-block !important;
