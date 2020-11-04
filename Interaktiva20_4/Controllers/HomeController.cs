@@ -16,6 +16,7 @@ using Interaktiva20_4.Models.DTO;
 using Microsoft.AspNetCore.Cors;
 using System.Security;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Interaktiva20_4.Infrastructure;
 
 namespace Interaktiva20_4.Controllers
 {
@@ -23,9 +24,12 @@ namespace Interaktiva20_4.Controllers
     {
         public HomeViewModel viewModel;
         private ICmdbRepository cmdbRepository;
+        ListHandler listHandler;
+        List<Movie> sessionList = new List<Movie>();
         public HomeController(ICmdbRepository cmdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
+            this.listHandler = new ListHandler(cmdbRepository);
         }
         [Route("")]
         public async Task<IActionResult> Index()
@@ -37,41 +41,18 @@ namespace Interaktiva20_4.Controllers
                 viewModel = await cmdbRepository.PresentIndex();
                 HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.MovieList));
             }
-            else if (JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList")).Count != cmdbList.Count())
+            else if (!string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
             {
-                
-                List<Movie> sessionList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
-                List<MovieDTO> newList = new List<MovieDTO>();
-                for (int i = 0; i < cmdbList.Count; i++)
+                sessionList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
+                if (listHandler.CheckForNewMovies(cmdbList, sessionList))
                 {
-                    newList.Add(cmdbList[i]);
+                    newCmdbMovies = await listHandler.AddNewMovies(cmdbList, sessionList);
                 }
-                for (int i = 0; i < cmdbList.Count; i++)
-                {
-                    if (sessionList.Exists(x => x.imdbId == cmdbList[i].imdbId))
-                    {
-                        newList.Remove(cmdbList[i]);
-                    }
-                }
-                
-                for (int i = 0; i < newList.Count; i++)
-                {
-                    newCmdbMovies.Add(await cmdbRepository.GetMoviesByID(newList[i].imdbId));
-                }
-                viewModel = new HomeViewModel(JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList")));
             }
-            else
-            {
-                viewModel = new HomeViewModel(JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList")));
-            }
+            viewModel = new HomeViewModel(JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList")));
             viewModel.SavedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
-            if (newCmdbMovies != null)
-            {
-                for (int i = 0; i < newCmdbMovies.Count; i++)
-                {
-                    viewModel.SavedList.Add(newCmdbMovies[i]);
-                }
-            }
+            viewModel = listHandler.UpdateChangesHome(newCmdbMovies, cmdbList, viewModel);
+            HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.SavedList));
             return View(viewModel);
         }
 

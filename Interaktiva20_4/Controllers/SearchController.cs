@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Interaktiva20_4.Data;
+using Interaktiva20_4.Infrastructure;
 using Interaktiva20_4.Models;
+using Interaktiva20_4.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -22,10 +24,12 @@ namespace Interaktiva20_4.Controllers
             '[', ']', '^', '_', '`', '´', '{', '}', '~', ' '};
         #endregion
         private ICmdbRepository cmdbRepository;
+        ListHandler listHandler;
 
         public SearchController(ICmdbRepository cmdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
+            this.listHandler = new ListHandler(cmdbRepository);
         }
         [Route("/Search")]
         public async Task<IActionResult> Index(string ID)
@@ -35,12 +39,15 @@ namespace Interaktiva20_4.Controllers
             var savedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
             try
             {
-              var viewModel = await cmdbRepository.PresentIndex(ID, savedList);
+                List<MovieDTO> cmdbList = cmdbRepository.GetMoviesCmdb().Result.ToList();
+                var viewModel = await cmdbRepository.PresentIndex(ID, savedList);
                 if (string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
                 {
                     HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.MovieList));
                 }
+
                 viewModel.SavedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
+                viewModel = listHandler.UpdateChangesSearch(cmdbList, viewModel);
                 return View(viewModel);
             }
             catch

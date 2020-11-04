@@ -1,4 +1,5 @@
 ﻿using Interaktiva20_4.Data;
+using Interaktiva20_4.Infrastructure;
 using Interaktiva20_4.Models;
 using Interaktiva20_4.Models.DTO;
 using Microsoft.AspNetCore.Http;
@@ -20,23 +21,26 @@ namespace Interaktiva20_4.Controllers
             '[', ']', '^', '_', '`', '´', '{', '}', '~', ' '};
         #endregion
         private ICmdbRepository cmdbRepository;
+        ListHandler listHandler;
 
         public AboutController(ICmdbRepository cmdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
+            this.listHandler = new ListHandler(cmdbRepository);
         }
         [Route("/About")]
         public async Task<IActionResult> Index(string ID)
         {
             ID = FixSearchString(ID);
+            List<MovieDTO> cmdbList = cmdbRepository.GetMoviesCmdb().Result.ToList();
             var savedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
             var viewModel = await cmdbRepository.PresentIndexID(ID, savedList);
+            
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
             {
                 HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.MovieList));
             }
-            viewModel.SavedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
-            
+            viewModel = listHandler.UpdateChangesAbout(cmdbList, viewModel);
             return View(viewModel);
         }
         public string FixSearchString(string ID)
