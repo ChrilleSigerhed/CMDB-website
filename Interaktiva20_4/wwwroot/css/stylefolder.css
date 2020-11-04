@@ -211,3 +211,6 @@
     text-align: center;
     width: 100%;
 }
+.body_all_pages {
+    background-image: linear-gradient(#ff9d0687, #ff7301, #fde52e) !important;
+}
