@@ -73,10 +73,11 @@
     text-align: left;
      
 }
-.TopRatedh1{
+.TopRatedh1 {
     padding-bottom: 20px;
     text-align: center;
-    font-weight: bold;
+    border-bottom: 1px solid;
+    margin-bottom: 33px;
 }
 .TopRatedh2{
     text-align: center;
@@ -184,6 +185,7 @@
 .aboutInfo{
     font-weight: bold;
 }
+
 .Top_movie_title {
     color: black !important;
     
@@ -192,4 +194,11 @@
 .Top_movie_title:hover {
     color:darkgray !important;
     text-decoration: none !important;
+}
+.Rating_div {
+    margin-right: 25px !important;
+    display:inline-block !important;
+}
+.Rating_div_hela {
+    margin-top: 15px !important;
 }
