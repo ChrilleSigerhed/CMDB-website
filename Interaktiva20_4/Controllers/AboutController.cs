@@ -35,11 +35,6 @@ namespace Interaktiva20_4.Controllers
             List<MovieDTO> cmdbList = cmdbRepository.GetMoviesCmdb().Result.ToList();
             var savedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
             var viewModel = await cmdbRepository.PresentIndexID(ID, savedList);
-            
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
-            {
-                HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.MovieList));
-            }
             viewModel = listHandler.UpdateChangesAbout(cmdbList, viewModel);
             return View(viewModel);
         }
