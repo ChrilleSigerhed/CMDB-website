@@ -85,6 +85,9 @@ function myFunction() {
 
 
 let LikedOrDislikedAlready = new Array
+if (sessionStorage.getItem('savedList') != null) {
+    LikedOrDislikedAlready = JSON.parse(sessionStorage.getItem('savedList'))
+}
 function SaveVote() {
     sessionStorage.setItem('savedList', JSON.stringify(LikedOrDislikedAlready))
 }
