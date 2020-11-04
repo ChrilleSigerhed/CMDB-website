@@ -188,8 +188,6 @@
 
 .Top_movie_title {
     color: black !important;
-    
-
 }
 .Top_movie_title:hover {
     color:darkgray !important;
@@ -197,8 +195,19 @@
 }
 .Rating_div {
     margin-right: 25px !important;
-    display:inline-block !important;
+    display: inline-block !important;
+    margin-top: 15px;
+    text-align: center;
+}
+.Rating_div_cmdb {
+    margin-top: 50px;
+    text-align: center;
 }
 .Rating_div_hela {
     margin-top: 15px !important;
+}
+.Ratings_div_container {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
 }
