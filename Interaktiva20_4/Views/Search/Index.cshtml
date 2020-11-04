@@ -20,16 +20,21 @@
                                 title = movie.Title;
                             }
                         }
-                        <div class="col-md-4 animate-box" id="searchResultBoxes">
+                    <div class="col-md-4 animate-box" id="searchResultBoxes" style="background:white">
+                        <a asp-action="Index" asp-controller="About" asp-route-id="@movie.imdbId">
                             <img src="@movie.Poster" onerror="this.src='/images/imagenotfound.jpg'" />
-                            <blockquote><b> @title (@movie.Year)</b></blockquote>
-                            <p>@movie.numberOfLikes       @movie.numberOfDislikes</p>
-                            <a asp-action="Index" asp-controller="About" asp-route-id="@movie.imdbId">
-                                <button class="btn btn-primary btn-outline" type="submit">
-                                    More
-                                </button>
-                            </a>
-                        </div>
+                        </a>
+                        <blockquote><b> @title (@movie.Year)</b></blockquote>
+                        <p>CMDb Betyg</p>
+                        <a style="font-size:24px;" class="icon-thumbs-up" accesskey="@movie.imdbId">@movie.numberOfLikes</a>
+                        <a style="font-size:24px;" class="icon-thumbs-down" accesskey="@movie.imdbId">@movie.numberOfDislikes</a>
+                        <br />
+                        <a asp-action="Index" asp-controller="About" asp-route-id="@movie.imdbId">
+                            <button class="btn btn-primary btn-outline" type="submit">
+                                More
+                            </button>
+                        </a>
+                    </div>
                     }
                 </div>
             </div>
