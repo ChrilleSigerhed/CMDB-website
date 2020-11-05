@@ -50,11 +50,19 @@ namespace Interaktiva20_4.Controllers
                 viewModel = listHandler.UpdateChangesSearch(cmdbList, viewModel);
                 return View(viewModel);
             }
-            catch
+            catch(Exception ex)
             {
                 ErrorViewModel viewModel = new ErrorViewModel();
-                viewModel.SavedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
-                viewModel.SearchWord = ID;
+                if (ex.HResult == -2146233088)
+                {
+                    viewModel.ErrorMessage = ex.InnerException.Message;
+                }
+                else
+                {
+                    viewModel.SavedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
+                    viewModel.SearchWord = ID;
+                }
+
                 return View("Error", viewModel);
             }
         }

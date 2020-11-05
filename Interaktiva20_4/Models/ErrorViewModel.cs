@@ -8,7 +8,7 @@ namespace Interaktiva20_4.Models
         public string SearchWord { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(SearchWord);
-
+        public string ErrorMessage { get; set; }
         public List<Movie> SavedList { get; set; }
     }
 }

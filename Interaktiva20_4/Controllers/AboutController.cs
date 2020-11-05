@@ -27,11 +27,21 @@ namespace Interaktiva20_4.Controllers
         [Route("/About")]
         public async Task<IActionResult> Index(string ID)
         {
-            List<MovieDTO> cmdbList = cmdbRepository.GetMoviesCmdb().Result.ToList();
-            var savedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
-            var viewModel = await cmdbRepository.PresentIndexID(ID, savedList);
-            viewModel = listHandler.UpdateChangesAbout(cmdbList, viewModel);
-            return View(viewModel);
+            try
+            {
+                List<MovieDTO> cmdbList = cmdbRepository.GetMoviesCmdb().Result.ToList();
+                var savedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
+                var viewModel = await cmdbRepository.PresentIndexID(ID, savedList);
+                viewModel = listHandler.UpdateChangesAbout(cmdbList, viewModel);
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                ErrorViewModel viewModel = new ErrorViewModel();
+                viewModel.ErrorMessage = ex.InnerException.Message;
+                return View("Error", viewModel);
+            }
+            
         }
     }
 }

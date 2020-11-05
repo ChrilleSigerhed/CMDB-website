@@ -50,6 +50,9 @@
                     </a>
                 </div>
                 <div class="col-12 col-md-7 align-self-center fh5co_mediya_right" id="noPaddingID">
+                @if (Model.SavedList != null)
+	            {
+		 
                     <div class="md-form active-pink active-pink-2 mt-0">
                         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for a movie...">
                     </div>
@@ -69,6 +72,7 @@
                             }
                         </ul>
                     </div>
+	            }
                 </div>
             </div>
         </div>
@@ -77,9 +81,16 @@
     <div class="container" id="body_margin">
         <div class="row mx-0">
             <div class="col-md-12 col-12 paddding animate-box" data-animate-effect="fadeIn">
-                    <img src="~/images/errorImage.png" class="center"/>
-                    <h1 class="errorh1">ERROR.</h1>
+                <img src="~/images/errorImage.png" class="center" />
+                <h1 class="errorh1">ERROR.</h1>
+                @if (Model.SearchWord != null)
+                {
                     <h2 class="errorh2">There was no result for the search: @Model.SearchWord</h2>
+                }
+                @if (Model.ErrorMessage != null)
+                {
+                    <h2 class="errorh2">@Model.ErrorMessage</h2>
+                }
             </div>
         </div>
     </div>

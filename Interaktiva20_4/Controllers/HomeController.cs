@@ -36,26 +36,35 @@ namespace Interaktiva20_4.Controllers
         [Route("")]
         public async Task<IActionResult> Index()
         {
-            List<Movie> newCmdbMovies = new List<Movie>();
-            List<MovieDTO> cmdbList = cmdbRepository.GetMoviesCmdb().Result.ToList();
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
+            try
             {
-                viewModel = await cmdbRepository.PresentIndex();
-                HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.MovieList));
-            }
-            else if (!string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
-            {
-                sessionList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
-                if (listHandler.CheckForNewMovies(cmdbList, sessionList))
+                List<Movie> newCmdbMovies = new List<Movie>();
+                List<MovieDTO> cmdbList = cmdbRepository.GetMoviesCmdb().Result.ToList();
+                if (string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
                 {
-                    newCmdbMovies = await listHandler.AddNewMovies(cmdbList, sessionList);
+                    viewModel = await cmdbRepository.PresentIndex();
+                    HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.MovieList));
                 }
+                else if (!string.IsNullOrEmpty(HttpContext.Session.GetString("MovieList")))
+                {
+                    sessionList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
+                    if (listHandler.CheckForNewMovies(cmdbList, sessionList))
+                    {
+                        newCmdbMovies = await listHandler.AddNewMovies(cmdbList, sessionList);
+                    }
+                }
+                viewModel = new HomeViewModel(JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList")));
+                viewModel.SavedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
+                viewModel = listHandler.UpdateChangesHome(newCmdbMovies, cmdbList, viewModel);
+                HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.SavedList));
+                return View(viewModel);
             }
-            viewModel = new HomeViewModel(JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList")));
-            viewModel.SavedList = JsonConvert.DeserializeObject<List<Movie>>(HttpContext.Session.GetString("MovieList"));
-            viewModel = listHandler.UpdateChangesHome(newCmdbMovies, cmdbList, viewModel);
-            HttpContext.Session.SetString("MovieList", JsonConvert.SerializeObject(viewModel.SavedList));
-            return View(viewModel);
+            catch(Exception ex)
+            {
+                ErrorViewModel viewModel = new ErrorViewModel();
+                viewModel.ErrorMessage = ex.InnerException.Message;
+                return View("Error", viewModel);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
