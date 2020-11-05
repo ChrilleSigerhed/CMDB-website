@@ -283,3 +283,9 @@
 .body_all_pages {
     background-image: linear-gradient(#ff9b0087, #fff3ba, #ffffff) !important;
 }
+.icon-thumbs-up:hover{
+    font-weight: bold;
+}
+.icon-thumbs-down:hover {
+    font-weight: bold;
+}
