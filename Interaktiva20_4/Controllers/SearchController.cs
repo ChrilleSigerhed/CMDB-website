@@ -60,8 +60,6 @@ namespace Interaktiva20_4.Controllers
         }
         public string FixSearchString(string ID)
         {
-
-            //star wars episode iv a 22tecken 
             for (int i = 0; i < notAcceptedChars.Length; i++)
             {
                 if (ID.Contains(notAcceptedChars[i]))

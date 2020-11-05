@@ -18,10 +18,12 @@ namespace Interaktiva20_4.Infrastructure
         HomeViewModel viewModel;
         public List<MovieDTO> cmdbList { get; set; }
         public List<Movie> movieList { get; set; }
+
         public ListHandler(ICmdbRepository cmdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
         }
+
         public bool CheckForNewMovies(List<MovieDTO> cmdbList, List<Movie> sessionList)
         {
             if (sessionList.Count != cmdbList.Count())

@@ -12,7 +12,7 @@ document.getElementById('myInput').addEventListener('keyup', function search(eve
 
 
 
-function myFunction() {
+function searchFunction() {
     document.getElementById('myUL').style.display = "none"
     var input, filter, ul, li, a, i, txtValue
     input = document.getElementById('myInput')
@@ -98,9 +98,8 @@ document.querySelectorAll('.icon-thumbs-up').forEach(item => {
             {
                 let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/like')
                 if (request.status == 200) {
-                    let value = item.textContent
-                    value++
-                    item.textContent = value
+                    let data = await request.json()
+                    item.textContent = data.numberOfLikes
                     LikedOrDislikedAlready.push(item.accessKey)
                     SaveVote();
                 }
@@ -117,11 +116,10 @@ document.querySelectorAll('.icon-thumbs-up').forEach(item => {
             let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/like')
             if (request.status == 200)
             {
-                     let value = item.textContent
-                     value++
-                     item.textContent = value
-                     LikedOrDislikedAlready.push(item.accessKey)
-                     SaveVote();
+                let data = await request.json()
+                item.textContent = data.numberOfLikes
+                LikedOrDislikedAlready.push(item.accessKey)
+                SaveVote();
             }
             else
             {
@@ -139,9 +137,8 @@ document.querySelectorAll('.icon-thumbs-down').forEach(item => {
             if (AlreadyVoted.includes(item.accessKey) == false) {
                 let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/dislike')
                 if (request.status == 200) {
-                    let value = item.textContent
-                    value++
-                    item.textContent = value
+                    let data = await request.json()
+                    item.textContent = data.numberOfDislikes
                     LikedOrDislikedAlready.push(item.accessKey)
                     SaveVote();
                 }
@@ -156,9 +153,8 @@ document.querySelectorAll('.icon-thumbs-down').forEach(item => {
         else {
             let request = await fetch('https://localhost:44313/api/' + item.accessKey + '/dislike')
             if (request.status == 200) {
-                let value = item.textContent
-                value++
-                item.textContent = value
+                let data = await request.json()
+                item.textContent = data.numberOfDislikes
                 LikedOrDislikedAlready.push(item.accessKey)
                 SaveVote();
             }
@@ -181,17 +177,15 @@ if (fullPlot.length > 150) {
     TopMoviePlot.appendChild(button)
 }
 button.addEventListener('click', function() {
-    if (fullPlot.length > 40) {
-        if (button.textContent == "Show more") {
-            TopMoviePlot.textContent = fullPlot
-            button.textContent = "Show less"
-            TopMoviePlot.appendChild(button)
-        }
-        else {
-            TopMoviePlot.textContent = shortPlotText
-            button.textContent = "Show more"
-            TopMoviePlot.appendChild(button)
-        }
+    if (button.textContent == "Show more") {
+        TopMoviePlot.textContent = fullPlot
+        button.textContent = "Show less"
+        TopMoviePlot.appendChild(button)
+    }
+    else {
+        TopMoviePlot.textContent = shortPlotText
+        button.textContent = "Show more"
+        TopMoviePlot.appendChild(button)
     }
 })
 

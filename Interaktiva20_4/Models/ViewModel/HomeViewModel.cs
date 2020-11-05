@@ -18,6 +18,7 @@ namespace Interaktiva20_4.Models.ViewModel
         public string  Title { get; set; }
         public string ImdbId { get; set; }
         public Movie SelectedMovie { get; set; }
+
         public HomeViewModel(IEnumerable<MovieDTO> movies, IEnumerable<MovieInfoDTO> matching)
         {
             MovieList = movies
@@ -55,7 +56,6 @@ namespace Interaktiva20_4.Models.ViewModel
         }
         public HomeViewModel(SearchDTO searchResult, List<Movie> savedList)
         {
-          
             MovieList = searchResult
                            .Search.Select(x => new Movie
                            {
@@ -137,7 +137,6 @@ namespace Interaktiva20_4.Models.ViewModel
             {
                 movie.Actors = stringNA;
             }
-
             return movie;
         }
     }

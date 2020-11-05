@@ -44,7 +44,6 @@ namespace Interaktiva20_4.Data
                 var task = apiClient.GetAsync<MovieInfoDTO>(baseUrlOmdb + APIString);
                 tasks.Add(task);
             }
-            
             await Task.WhenAll(tasks);
             for (int i = 0; i < tasks.Count; i++)
             {
@@ -56,39 +55,28 @@ namespace Interaktiva20_4.Data
         public async Task<HomeViewModel> PresentIndex()
         {
             var tasks = new List<Task>();
-            
             var resultCmdb = GetMoviesCmdb();
             var resultOmdb = GetMatchingMovies(resultCmdb.Result);
-
             tasks.Add(resultOmdb);
             tasks.Add(resultCmdb);
             await Task.WhenAll(tasks);
-
             return new HomeViewModel(resultCmdb.Result, resultOmdb.Result);
         }
 
         public async Task<HomeViewModel> PresentIndex(string search, List<Movie> savedList)
         {
             var tasks = new List<Task>();
-            //var resultCmdb =  GetMoviesCmdb();
             var resultOmdb =  GetMoviesBySearch(search);
-
             tasks.Add(resultOmdb);
-            //tasks.Add(resultCmdb);
             await Task.WhenAll(tasks);
-
             return new HomeViewModel(resultOmdb.Result, savedList);
         }
         public async Task<HomeViewModel> PresentIndexID(string ID, List<Movie> savedList)
         {
             var tasks = new List<Task>();
-            //var resultCmdb =  GetMoviesCmdb();
             var resultOmdb = GetMoviesByID(ID);
-
             tasks.Add(resultOmdb);
-            //tasks.Add(resultCmdb);
             await Task.WhenAll(tasks);
-
             return new HomeViewModel(resultOmdb.Result, savedList);
         }
         public async Task<SearchDTO> GetMoviesBySearch(string search)

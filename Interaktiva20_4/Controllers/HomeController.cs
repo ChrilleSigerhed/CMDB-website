@@ -26,11 +26,13 @@ namespace Interaktiva20_4.Controllers
         private ICmdbRepository cmdbRepository;
         ListHandler listHandler;
         List<Movie> sessionList = new List<Movie>();
+
         public HomeController(ICmdbRepository cmdbRepository)
         {
             this.cmdbRepository = cmdbRepository;
             this.listHandler = new ListHandler(cmdbRepository);
         }
+
         [Route("")]
         public async Task<IActionResult> Index()
         {
