@@ -1,0 +1,74 @@
+﻿<div class="container-fluid pt-3">
+    <div class="container">
+        <h1 class="TopRatedh1">Top Rated Movie Right Now!</h1>
+    </div>
+</div>
+<div class="container" id="body_margin">
+    <div class="row mx-0">
+        <div class="col-md-12 col-12 paddding animate-box" data-animate-effect="fadeIn">
+            <div class="fh5co_suceefh5co_height">
+                <a asp-action="Index" asp-controller="About" asp-route-id="@Model.SavedList[0].imdbId">
+                    <img class="TopMoviePoster" src=@Model.SavedList[0].Poster alt="img">
+                </a>
+                <div class="TopMovieInfo">
+                    <a asp-action="Index" asp-controller="About" asp-route-id="@Model.SavedList[0].imdbId" class="Top_movie_title">
+                        <h2 class="TopRatedh2">@Model.SavedList[0].Title</h2>
+                    </a>
+                    <p class="movie_plot">@Model.SavedList[0].Plot</p>
+                    <div class="Rating_div_cmdb">
+                         <h3>Rate this movie!</h3>
+                        <img src="~/images/cmdbicon.png" />
+                        <a>CMDb Betyg: </a>
+                        <a style="font-size:24px;" class="icon-thumbs-up" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfLikes</a>
+                        <a style="font-size:24px;" class="icon-thumbs-down" accesskey="@Model.SavedList[0].imdbId">@Model.SavedList[0].numberOfDislikes</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Ratings_div_container">
+
+    @for (int i = 0; i < Model.SavedList[0].ratings.Count; i++)
+    {
+        <div class="Rating_div">
+            @if (@Model.SavedList[0].ratings[i].Source == "Internet Movie Database")
+            {<img src="~/images/imdb.png" />}
+            @if (@Model.SavedList[0].ratings[i].Source == "Rotten Tomatoes")
+            {<img src="~/images/rottentomatoes.png" />}
+            @if (@Model.SavedList[0].ratings[i].Source == "Metacritic")
+            {<img src="~/images/metacritic.png" />}
+            <a>@Model.SavedList[0].ratings[i].Source:</a>
+            <a style="font-size:20px;">@Model.SavedList[0].ratings[i].Value</a>
+        </div>
+    }
+</div>
+<div class="container-fluid pt-3">
+    <div class="container animate-box" data-animate-effect="fadeIn">
+        <div>
+            <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Top Rated Movies</div>
+        </div>
+        <div class="owl-carousel owl-theme js" id="slider1">
+            @for (int i = 1; i < 20; i++)
+            {
+                <div class="item px-2">
+                    <div class="fh5co_latest_trading_img_position_relative">
+                        <a asp-action="Index" asp-controller="About" asp-route-id="@Model.SavedList[i].imdbId">
+                            <div class="fh5co_latest_trading_img">
+
+                                <img src=@Model.SavedList[i].Poster class="fh5co_img_special" style="width:100%"/>
+                            </div>
+                            <div class="fh5co_latest_trading_img_position_absolute"></div>
+                        </a>
+                        <div class="fh5co_latest_trading_img_position_absolute_1">
+                            <a class="text-white"> #@(i+1) @Model.SavedList[i].Title</a>
+                            <div class="fh5co_latest_trading_date_and_name_color"> <a class="icon-thumbs-up" accesskey="@Model.SavedList[i].imdbId">@Model.SavedList[i].numberOfLikes </a><a class="icon-thumbs-down" accesskey="@Model.SavedList[i].imdbId">@Model.SavedList[i].numberOfDislikes</a>  </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
