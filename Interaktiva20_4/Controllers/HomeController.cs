@@ -66,11 +66,5 @@ namespace Interaktiva20_4.Controllers
                 return View("Error", viewModel);
             }
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { SearchWord = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
